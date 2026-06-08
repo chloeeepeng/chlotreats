@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chlotreats</title>
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <style>
+      * {
+        /*selector for all elements*/
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #fffdf8;
+        font-family: "Microsoft YaHei", sans-serif;
+        font-weight: 300;
+        color: #5f4637;
+      }
+
+      /* Header */
+
+      .navbar {
+        height: 120px;
+        background: white;
+        display: flex;
+        align-items: center;
+        padding: 0 70px 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 20;
+      }
+
+      /* Logo */
+
+      .logo img {
+        width: auto;
+        height: 80px;
+      }
+
+      /* Search Bar */
+
+      .search-container {
+        margin-left: 100px;
+        margin-right: auto;
+        padding-top: 27px;
+        position: relative;
+      }
+
+      .search-container input {
+        width: 180px;
+        height: 34px;
+        border: none;
+        border-radius: 20px;
+        background: #ece7e4;
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #5f4637;
+      }
+
+      .search-results {
+        display: none;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        width: 280px;
+        max-height: 340px;
+        overflow-y: auto;
+        list-style: none;
+        background: white;
+        border: 1px solid #eadfd8;
+        border-radius: 8px;
+        box-shadow: 0 8px 22px rgba(76, 55, 42, 0.16);
+        z-index: 40;
+      }
+
+      .search-results.show {
+        display: block;
+      }
+
+      .search-results a,
+      .search-results p {
+        display: block;
+        padding: 12px 14px;
+        color: #5f4637;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .search-results a:hover {
+        background: #f5eee6;
+      }
+
+      .search-results span {
+        display: block;
+        color: #9a7b64;
+        font-size: 12px;
+        margin-top: 3px;
+      }
+
+      /* Navigation */
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 90px;
+        padding-top: 27px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #6b4f3d;
+        font-size: 18px;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.7;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 120px;
+        list-style: none;
+        background: white;
+        padding: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 30;
+      }
+
+      .dropdown-menu li {
+        padding: 0;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 15px;
+        color: #6b4f3d;
+        font-size: 16px;
+        text-decoration: none;
+      }
+
+      .dropdown-menu a:hover {
+        background: #f5f5f5;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      .content {
+        min-height: calc(100vh - 120px);
+      }
+
+      .hero {
+        min-height: 520px;
+        height: calc(100vh - 180px);
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(38, 27, 20, 0.62) 0%,
+            rgba(38, 27, 20, 0.28) 48%,
+            rgba(38, 27, 20, 0.08) 100%
+          ),
+          url("images/taro-yogurt-buns.jpeg") center 44% / cover;
+      }
+
+      .hero-content {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 0 0 76px;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: clamp(52px, 8vw, 104px);
+        line-height: 0.95;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        max-width: 560px;
+        font-size: clamp(18px, 2.2vw, 26px);
+        line-height: 1.55;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 34px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 22px;
+        border-radius: 24px;
+        text-decoration: none;
+        font-size: 16px;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        background: white;
+        color: #5f4637;
+      }
+
+      .button-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        color: white;
+      }
+
+      .section {
+        padding: 64px 40px;
+      }
+
+      .section-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 24px;
+        margin-bottom: 26px;
+      }
+
+      .section-header h2 {
+        font-size: 34px;
+        font-weight: 400;
+        color: #5f4637;
+      }
+
+      .section-header p {
+        max-width: 460px;
+        color: #8a6f5a;
+        line-height: 1.7;
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+      }
+
+      .category-card,
+      .recipe-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        text-decoration: none;
+        color: #5f4637;
+        box-shadow: 0 4px 14px rgba(76, 55, 42, 0.09);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .category-card:hover,
+      .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 24px rgba(76, 55, 42, 0.14);
+      }
+
+      .category-card img,
+      .recipe-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .category-card h3,
+      .recipe-card h3 {
+        font-size: 20px;
+        font-weight: 400;
+        padding: 16px 16px 6px;
+      }
+
+      .category-card p,
+      .recipe-card p {
+        color: #9a7b64;
+        font-size: 14px;
+        padding: 0 16px 18px;
+      }
+
+      .feature-band {
+        background: #f5eee6;
+      }
+
+      .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .recipe-card img {
+        height: 250px;
+      }
+
+      .search-panel {
+        background: white;
+        border-top: 1px solid #eadfd8;
+        border-bottom: 1px solid #eadfd8;
+      }
+
+      .recipe-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        list-style: none;
+      }
+
+      .recipe-list a {
+        display: block;
+        min-height: 54px;
+        padding: 12px 14px;
+        border: 1px solid #eadfd8;
+        border-radius: 8px;
+        color: #5f4637;
+        text-decoration: none;
+        background: #fffdf8;
+      }
+
+      .recipe-list a:hover {
+        background: #f5eee6;
+      }
+
+      .recipe-list span {
+        display: block;
+        color: #9a7b64;
+        font-size: 12px;
+        margin-top: 4px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      footer {
+        background: white;
+      }
+
+      @media (max-width: 950px) {
+        .navbar {
+          height: auto;
+          padding: 20px;
+          flex-wrap: wrap;
+        }
+
+        .search-container {
+          margin-left: 20px;
+        }
+
+        .nav-links {
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .category-grid,
+        .featured-grid,
+        .recipe-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .section-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .hero {
+          min-height: 520px;
+          height: calc(100vh - 170px);
+          background:
+            linear-gradient(
+              180deg,
+              rgba(38, 27, 20, 0.16) 0%,
+              rgba(38, 27, 20, 0.68) 100%
+            ),
+            url("images/blueberry-muffins.jpeg") center center / cover;
+        }
+
+        .hero-content {
+          width: calc(100% - 36px);
+          padding-bottom: 46px;
+        }
+
+        .section {
+          padding: 46px 20px;
+        }
+
+        .category-grid,
+        .featured-grid,
+        .recipe-list {
+          grid-template-columns: 1fr;
+        }
+
+        .category-card img,
+        .recipe-card img {
+          height: 210px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo">
+        <a href="Chlotreats_main.html" class="logo"
+          ><img src="images/Chlotreats_logo.png" alt="Chlotreats Logo" />
+        </a>
+      </div>
+
+      <div class="search-container">
+        <input type="search" placeholder="搜索" autocomplete="off" />
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav>
+        <ul class="nav-links">
+          <li class="dropdown">
+            <a href="蛋糕/全部蛋糕_主页.html">蛋糕</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="芝士蛋糕/芝士蛋糕_主页.html">芝士蛋糕</a></li>
+              <li><a href="免烤蛋糕/免烤蛋糕_主页.html">免烤蛋糕</a></li>
+              <li><a href="戚风蛋糕/戚风蛋糕_主页.html">戚风蛋糕</a></li>
+              <li><a href="其他蛋糕/其他蛋糕_主页.html">其他蛋糕</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="面包/全部面包_主页.html">面包</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="面包/波兰种_主页.html">波兰种</a></li>
+              <li><a href="面包/汤种_主页.html">汤种</a></li>
+              <li><a href="面包/中种_主页.html">中种</a></li>
+              <li><a href="面包/其他_主页.html">其他</a></li>
+            </ul>
+          </li>
+
+          <li><a href="曲奇/曲奇_主页.html">曲奇</a></li>
+          <li><a href="小甜点/小甜点_主页.html">小甜点</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Chlotreats</h1>
+          <p>
+            记录日常烘焙的小美好，按配方分类整理好，<br />想做的时候可以直接打开。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="小甜点/小甜点_主页.html"
+              >Browse Desserts</a
+            >
+            <a
+              class="button button-secondary"
+              href="芝士蛋糕/recipe.html?recipe=blueberry-muffin"
+              >Today's Pick</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-header">
+            <div>
+              <h2>分类</h2>
+            </div>
+            <p>从大类进入，再挑具体配方。</p>
+          </div>
+
+          <div class="category-grid">
+            <a class="category-card" href="蛋糕/全部蛋糕_主页.html">
+              <img
+                src="images/biscoff-cake.jpeg"
+                alt="蛋糕"
+                style="object-position: center 68%"
+              />
+              <h3>蛋糕</h3>
+              <p>Cakes</p>
+            </a>
+
+            <a class="category-card" href="面包/全部面包_主页.html">
+              <img src="images/salt-bread.jpeg" alt="面包" />
+              <h3>面包</h3>
+              <p>Breads</p>
+            </a>
+
+            <a class="category-card" href="曲奇/曲奇_主页.html">
+              <img src="images/diamond-cookies.jpeg" alt="曲奇" />
+              <h3>曲奇</h3>
+              <p>Cookies</p>
+            </a>
+
+            <a class="category-card" href="小甜点/小甜点_主页.html">
+              <img src="images/matcha-madeleines.jpeg" alt="小甜点" />
+              <h3>小甜点</h3>
+              <p>Small Desserts</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section feature-band">
+        <div class="section-inner">
+          <div class="section-header">
+            <div>
+              <h2>最近想做</h2>
+            </div>
+            <p>几款照片和配方都已经整理好的点心。</p>
+          </div>
+
+          <div class="featured-grid">
+            <a
+              class="recipe-card"
+              href="芝士蛋糕/recipe.html?recipe=choux-pastry"
+            >
+              <img src="images/choux-pastry.jpeg" alt="酥皮泡芙" />
+              <h3>酥皮泡芙</h3>
+              <p>Choux Pastry</p>
+            </a>
+
+            <a
+              class="recipe-card"
+              href="芝士蛋糕/recipe.html?recipe=matcha-soft-cookies"
+            >
+              <img src="images/matcha-cookies.jpeg" alt="抹茶软曲奇" />
+              <h3>抹茶软曲奇</h3>
+              <p>Matcha Soft Cookies</p>
+            </a>
+
+            <a
+              class="recipe-card"
+              href="芝士蛋糕/recipe.html?recipe=pork-floss-buns"
+            >
+              <img src="images/pork-floss-buns.jpeg" alt="肉松包" />
+              <h3>肉松包</h3>
+              <p>Pork Floss Buns</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section search-panel">
+        <div class="section-inner">
+          <div class="section-header">
+            <div>
+              <h2>快速入口</h2>
+            </div>
+            <p>常用配方放在这里，打开就能看材料和步骤。</p>
+          </div>
+
+          <ul class="recipe-list" id="recipeList">
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=cranberry-cheese-buns"
+                >蔓越莓奶酪包<span>Cranberry cheese buns</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/黑芝麻巴斯克蛋糕.html"
+                >黑芝麻巴斯克<span>Black Sesame Basque</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=earl-grey-cake"
+                >伯爵红茶蛋糕<span>Earl Grey Cake</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=poolish-donuts"
+                >波兰种甜甜圈<span>Poolish Donuts</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=sausage-buns"
+                >肠仔包<span>Sausage Buns</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=butter-rolls"
+                >黄油餐包<span>Butter Rolls</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="芝士蛋糕/recipe.html?recipe=biscoff-white-chocolate-cookies"
+                >Biscoff白巧软曲奇<span>Biscoff Cookies</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=lemon-curd-cookies"
+                >柠檬凝乳曲奇<span>Lemon Curd Cookies</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=apple-pie"
+                >苹果派<span>Apple Pie</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=hong-kong-egg-tarts"
+                >港式蛋挞<span>Hong Kong Egg Tarts</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=panna-cotta"
+                >意式奶冻<span>Panna Cotta</span></a
+              >
+            </li>
+            <li>
+              <a href="芝士蛋糕/recipe.html?recipe=banana-brownie"
+                >香蕉布朗尼<span>Banana Brownies</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="scripts/site-search.js"></script>
+
+    <footer>
+      <p style="text-align: center; padding: 20px; color: #999">
+        &copy; 2026 Chlotreats. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>
