@@ -401,19 +401,55 @@
       }
 
       @media (max-width: 560px) {
-        .search-container {
-          padding: 20px, 20px, 20px, 0px;
-        }
         .navbar {
           height: auto;
-          padding: 20px;
-          flex-wrap: wrap;
+          padding: 16px 18px 14px;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
         }
+
+        .logo img {
+          height: 68px;
+          display: block;
+        }
+
+        .search-container {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        .search-container input {
+          width: 100%;
+          max-width: 320px;
+          display: block;
+          margin: 0 auto;
+        }
+
+        nav {
+          width: 100%;
+        }
+
         .nav-links {
-          padding-left: 15px;
-          padding-right: 15px;
-          gap: 88px;
+          width: 100%;
+          padding: 2px 0 0;
+          gap: 0;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: nowrap;
         }
+
+        .nav-links a {
+          font-size: 16px;
+        }
+
+        .dropdown-menu {
+          left: 50%;
+          transform: translateX(-50%);
+          min-width: 130px;
+        }
+
         .hero {
           min-height: 520px;
           height: calc(100vh - 170px);
