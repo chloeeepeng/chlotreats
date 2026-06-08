@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>黑芝麻巴斯克蛋糕 | Chlotreats</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: white;
+        font-family: "Microsoft YaHei", sans-serif;
+        font-weight: 300;
+        color: #6b4f3d;
+      }
+
+      .navbar {
+        height: 120px;
+        background: white;
+        display: flex;
+        align-items: center;
+        padding: 0px 70px 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo img {
+        width: auto;
+        height: 80px;
+      }
+
+      .search-container {
+        margin-left: 100px;
+        margin-right: auto;
+        padding-top: 27px;
+      }
+
+      .search-container input {
+        width: 180px;
+        height: 34px;
+        border: none;
+        border-radius: 20px;
+        background: #ece7e4;
+        padding: 10px 15px;
+        font-size: 14px;
+        font-weight: 300;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 90px;
+        padding-top: 27px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #6b4f3d;
+        font-size: 18px;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.7;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 120px;
+        list-style: none;
+        background: white;
+        padding: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 15px;
+        color: #6b4f3d;
+        font-size: 16px;
+        text-decoration: none;
+      }
+
+      .dropdown-menu a:hover {
+        background: #f5f5f5;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 45px 24px 70px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 42px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+
+      .hero-image {
+        display: block;
+        width: min(100%, 900px);
+        height: 600px;
+        object-fit: cover;
+        margin: 40px auto 35px;
+      }
+
+      .recipe-title {
+        text-align: center;
+        font-size: 18px;
+        color: #7a5e4a;
+        margin-bottom: 20px;
+      }
+      .recipe-intro {
+        max-width: 680px;
+        margin: -10px auto 35px;
+        text-align: center;
+        line-height: 1.8;
+        font-size: 16px;
+        color: #7a5e4a;
+      }
+
+      .recipe-card {
+        background: white;
+        padding: 32px;
+      }
+
+      .recipe-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        border-bottom: 1px solid #eadfd8;
+        padding-bottom: 22px;
+        margin-bottom: 28px;
+      }
+
+      .scale-control label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      .scale-control input {
+        width: 150px;
+        height: 36px;
+        border: 1px solid #d8c8bd;
+        border-radius: 20px;
+        padding: 0 14px;
+        color: #6b4f3d;
+        background: #faf7f5;
+        font-size: 15px;
+      }
+
+      .wake-lock {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 15px;
+      }
+
+      .switch {
+        position: relative;
+        width: 52px;
+        height: 28px;
+      }
+
+      .switch input {
+        display: none;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        inset: 0;
+        background: #d7c7bc;
+        border-radius: 30px;
+        transition: 0.2s;
+      }
+
+      .slider::before {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        left: 3px;
+        top: 3px;
+        background: white;
+        border-radius: 50%;
+        transition: 0.2s;
+      }
+
+      .switch input:checked + .slider {
+        background: #6b4f3d;
+      }
+
+      .switch input:checked + .slider::before {
+        transform: translateX(24px);
+      }
+
+      .section {
+        margin-top: 28px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .ingredients {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 30px;
+        text-decoration: none;
+        font-weight: 400;
+      }
+
+      .ingredients li {
+        background: #faf7f5;
+        padding: 12px 15px;
+        border-radius: 8px;
+      }
+
+      .steps {
+        padding-left: 22px;
+        line-height: 1.9;
+        font-weight: 400;
+      }
+
+      .steps li {
+        margin-bottom: 14px;
+      }
+
+      .amount {
+        font-weight: 600;
+        color: #4f3b2f;
+        text-decoration: underline;
+        text-decoration-color: #d8c8bd;
+        text-decoration-thickness: 2px;
+      }
+
+      @media (max-width: 750px) {
+        .navbar {
+          height: auto;
+          padding: 20px;
+          flex-wrap: wrap;
+        }
+
+        .search-container {
+          margin-left: 20px;
+        }
+
+        .nav-links {
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .recipe-top {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .ingredients {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-image {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a href="../Chlotreats_main.html" class="logo">
+        <img src="../images/Chlotreats_logo.png" alt="Chlotreats Logo" />
+      </a>
+
+      <div class="search-container">
+        <input type="text" placeholder="搜索" />
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="dropdown">
+            <a href="../蛋糕/全部蛋糕_主页.html">蛋糕</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/芝士蛋糕/芝士蛋糕_主页.html">芝士蛋糕</a></li>
+              <li><a href="/免烤蛋糕/免烤蛋糕_主页.html">免烤蛋糕</a></li>
+              <li><a href="/戚风蛋糕/戚风蛋糕_主页.html">戚风蛋糕</a></li>
+              <li><a href="/其他蛋糕/其他蛋糕_主页.html">其他蛋糕</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="../面包/全部面包_主页.html">面包</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/面包/波兰种_主页.html">波兰种</a></li>
+              <li><a href="/面包/汤种_主页.html">汤种</a></li>
+              <li><a href="/面包/中种_主页.html">中种</a></li>
+              <li><a href="/面包/其他_主页.html">其他</a></li>
+            </ul>
+          </li>
+
+          <li><a href="/曲奇/曲奇_主页.html">曲奇</a></li>
+          <li><a href="/小甜点/小甜点_主页.html">小甜点</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>黑芝麻巴斯克蛋糕</h1>
+      <p class="recipe-title">Black sesame basque cheesecake</p>
+
+      <img
+        class="hero-image"
+        src="../images/黑芝麻巴斯克蛋糕.jpeg"
+        alt="黑芝麻巴斯克蛋糕"
+      />
+
+      <p class="recipe-intro">
+        原方来自eigyokudo<br />黑芝麻酱是无糖的<br />鸡蛋要室温的
+      </p>
+
+      <section class="recipe-card">
+        <div class="recipe-top">
+          <div class="scale-control">
+            <label for="scale">份量倍数</label>
+            <input
+              id="scale"
+              type="number"
+              value="1"
+              min="0.25"
+              max="5"
+              step="0.25"
+            />
+          </div>
+
+          <div class="wake-lock">
+            <span>防止屏幕变暗</span>
+
+            <label class="switch">
+              <input type="checkbox" id="wakeLockToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>材料</h2>
+
+          <ul class="ingredients">
+            <li>奶油奶酪 <span class="amount" data-base="250">250</span>g</li>
+            <li>细砂糖 <span class="amount" data-base="40">40</span>g</li>
+            <li>黑芝麻酱 <span class="amount" data-base="114">114</span>g</li>
+            <li>白巧克力 <span class="amount" data-base="90">90</span>g</li>
+            <li>鸡蛋 <span class="amount" data-base="3">3</span> 个</li>
+            <li>淡奶油 <span class="amount" data-base="225">225</span>g</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>步骤</h2>
+
+          <ol class="steps">
+            <li>模具垫入烘焙纸, 烤箱预热230摄氏度</li>
+            <li>
+              将 <span class="amount" data-base="250">250</span>g
+              奶油奶酪用微波炉软化， 加入
+              <span class="amount" data-base="40">40</span>g
+              细砂糖，搅拌至顺滑。
+            </li>
+
+            <li>
+              加入 <span class="amount" data-base="114">114</span>g 黑芝麻酱，
+              搅拌到颜色均匀。
+            </li>
+
+            <li>
+              将 <span class="amount" data-base="90">90</span>g
+              白巧克力隔水融化后加入面糊， 搅拌均匀。
+            </li>
+            <li>
+              分次加入 <span class="amount" data-base="3">3</span> 个鸡蛋，
+              每次都搅拌均匀后再加入下一次。
+            </li>
+
+            <li>
+              倒入 <span class="amount" data-base="225">225</span>g 淡奶油，
+              搅拌顺滑。
+            </li>
+
+            <li>将面糊过筛后倒入铺好油纸的模具中。</li>
+
+            <li>
+              烤箱提前预热至 230°C，烘烤 19 到 21
+              分钟，表面出现深焦色即可（我烤了22分钟）。
+            </li>
+
+            <li>不要脱模，放凉后冷藏至少 4 小时，脱模后切块食用。</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const scaleSelect = document.getElementById("scale");
+      const amounts = document.querySelectorAll(".amount");
+
+      function updateAmounts() {
+        const scale = Number(scaleSelect.value);
+
+        amounts.forEach((amount) => {
+          const base = Number(amount.dataset.base);
+          const newAmount = base * scale;
+
+          amount.textContent = Number.isInteger(newAmount)
+            ? newAmount
+            : newAmount.toFixed(1);
+        });
+      }
+
+      scaleSelect.addEventListener("input", updateAmounts);
+
+      let wakeLock = null;
+      const wakeLockToggle = document.getElementById("wakeLockToggle");
+
+      async function requestWakeLock() {
+        if ("wakeLock" in navigator) {
+          wakeLock = await navigator.wakeLock.request("screen");
+        } else {
+          alert("这个浏览器不支持防止屏幕变暗功能。");
+          wakeLockToggle.checked = false;
+        }
+      }
+
+      async function releaseWakeLock() {
+        if (wakeLock !== null) {
+          await wakeLock.release();
+          wakeLock = null;
+        }
+      }
+
+      wakeLockToggle.addEventListener("change", async () => {
+        if (wakeLockToggle.checked) {
+          await requestWakeLock();
+        } else {
+          await releaseWakeLock();
+        }
+      });
+    </script>
+    <script src="../scripts/site-search.js"></script>
+  </body>
+
+  <footer>
+    <p style="text-align: center; padding: 20px; color: #999">
+      &copy; 2026 Chlotreats. All rights reserved.
+    </p>
+  </footer>
+</html>

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>戚风蛋糕 | Chlotreats</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: white;
+        font-family: "Microsoft YaHei", sans-serif;
+        font-weight: 300;
+      }
+
+      .navbar {
+        height: 120px;
+        background: white;
+        display: flex;
+        align-items: center;
+        padding: 0px 70px 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo img {
+        width: auto;
+        height: 80px;
+      }
+
+      .search-container {
+        margin-left: 100px;
+        margin-right: auto;
+        padding-top: 27px;
+      }
+
+      .search-container input {
+        width: 180px;
+        height: 34px;
+        border: none;
+        border-radius: 20px;
+        background: #ece7e4;
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 90px;
+        padding-top: 27px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #6b4f3d;
+        font-size: 18px;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.7;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 120px;
+        list-style: none;
+        background: white;
+        padding: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 15px;
+        color: #6b4f3d;
+        font-size: 16px;
+        text-decoration: none;
+      }
+
+      .dropdown-menu a:hover {
+        background: #f5f5f5;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      .page-title {
+        text-align: center;
+        padding: 50px 20px 30px;
+        color: #6b4f3d;
+      }
+
+      .page-title h1 {
+        font-size: 36px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+
+      .page-title p {
+        font-size: 16px;
+        color: #8a6f5a;
+      }
+
+      .cake-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 40px 60px;
+      }
+
+      .cake-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        text-decoration: none;
+        color: #6b4f3d;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .cake-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .cake-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .cake-card h2 {
+        font-size: 18px;
+        font-weight: 400;
+        padding: 16px 15px 6px;
+      }
+
+      .cake-card p {
+        font-size: 14px;
+        color: #9a7b64;
+        padding: 0 15px 18px;
+      }
+
+      @media (max-width: 900px) {
+        .cake-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .cake-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a href="../Chlotreats_main.html" class="logo">
+        <img src="../images/Chlotreats_logo.png" alt="Chlotreats Logo" />
+      </a>
+
+      <div class="search-container">
+        <input type="text" placeholder="搜索" />
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="dropdown">
+            <a href="../蛋糕/全部蛋糕_主页.html">蛋糕</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/芝士蛋糕/芝士蛋糕_主页.html">芝士蛋糕</a></li>
+              <li><a href="/免烤蛋糕/免烤蛋糕_主页.html">免烤蛋糕</a></li>
+              <li><a href="/戚风蛋糕/戚风蛋糕_主页.html">戚风蛋糕</a></li>
+              <li><a href="/其他蛋糕/其他蛋糕_主页.html">其他蛋糕</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="../面包/全部面包_主页.html">面包</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/面包/波兰种_主页.html">波兰种</a></li>
+              <li><a href="/面包/汤种_主页.html">汤种</a></li>
+              <li><a href="/面包/中种_主页.html">中种</a></li>
+              <li><a href="/面包/其他_主页.html">其他</a></li>
+            </ul>
+          </li>
+
+          <li><a href="/曲奇/曲奇_主页.html">曲奇</a></li>
+          <li><a href="/小甜点/小甜点_主页.html">小甜点</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-title">
+        <h1>戚风蛋糕</h1>
+        <p>Chiffon Cakes</p>
+      </section>
+
+      <section class="cake-grid">
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=pandan-cake-2"
+          class="cake-card"
+        >
+          <img
+            src="../images/pandan-cake.jpeg"
+            alt="斑斓奶油蛋糕"
+            style="object-position: center 65%"
+          />
+          <h2>斑斓奶油蛋糕</h2>
+          <p>Pandan Chiffon Cake</p>
+        </a>
+
+        <a href="../芝士蛋糕/recipe.html?recipe=biscoff-cake" class="cake-card">
+          <img
+            src="../images/biscoff-cake.jpeg"
+            alt="焦糖饼干蛋糕"
+            style="object-position: center 70%"
+          />
+          <h2>焦糖饼干蛋糕</h2>
+          <p>Biscoff Cake</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=earl-grey-cake"
+          class="cake-card"
+        >
+          <img
+            src="../images/earl-grey-chiffon.jpeg"
+            alt="伯爵红茶蛋糕"
+            style="object-position: center 60%"
+          />
+          <h2>伯爵红茶蛋糕</h2>
+          <p>Earl Grey Cake</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=blueberry-cream-cheese-chiffon-cake"
+          class="cake-card"
+        >
+          <img
+            src="../images/blueberry-chiffon.jpeg"
+            alt="blueberry chiffon"
+            style="object-position: center 60%"
+          />
+          <h2>蓝莓芝士奶油蛋糕</h2>
+          <p>Blueberry cake with cream cheese frosting</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=choco-chiffon"
+          class="cake-card"
+        >
+          <img
+            src="../images/choco-chiffon.jpeg"
+            alt="Chocolate chiffon"
+            style="object-position: center 55%"
+          />
+          <h2>巧克力戚风蛋糕</h2>
+          <p>Chocolate Chiffon cake</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=strawberry-chocolate-chiffon"
+          class="cake-card"
+        >
+          <img
+            src="../images/strawberry-chocolate-chiffon.jpeg"
+            alt="Strawberry Chocolate Chiffon"
+            style="object-position: center 70%"
+          />
+          <h2>草莓巧克力戚风蛋糕</h2>
+          <p>Strawberry Chocolate Chiffon Cake</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=matcha-rasp-chiffon"
+          class="cake-card"
+        >
+          <img
+            src="../images/matcha-rasp-chiffon.jpeg"
+            alt="matcha rasp chiffon"
+            style="object-position: center 55%"
+          />
+          <h2>抹茶覆盆子蛋糕</h2>
+          <p>Matcha Raspberry Chiffon Cake</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=matcha-chiffon-cake"
+          class="cake-card"
+        >
+          <img
+            src="../images/matcha-chiffon.jpeg"
+            alt="matcha chiffon"
+            style="object-position: center 60%"
+          />
+          <h2>抹茶戚风蛋糕</h2>
+          <p>Matcha Chiffon Cake</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=mango-chiffon-cake"
+          class="cake-card"
+        >
+          <img
+            src="../images/mango-chiffon.jpeg"
+            alt="mango chiffon"
+            style="object-position: center 58%"
+          />
+          <h2>芒果戚风蛋糕</h2>
+          <p>Mango Chiffon Cake</p>
+        </a>
+      </section>
+    </main>
+    <script src="../scripts/site-search.js"></script>
+  </body>
+  <footer>
+    <p style="text-align: center; padding: 20px; color: #999">
+      &copy; 2026 Chlotreats. All rights reserved.
+    </p>
+  </footer>
+</html>

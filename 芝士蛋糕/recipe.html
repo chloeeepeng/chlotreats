@@ -1,0 +1,2185 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>黑芝麻巴斯克蛋糕 | Chlotreats</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: white;
+        font-family: "Microsoft YaHei", sans-serif;
+        font-weight: 300;
+        color: #6b4f3d;
+      }
+
+      .navbar {
+        height: 120px;
+        background: white;
+        display: flex;
+        align-items: center;
+        padding: 0px 70px 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo img {
+        width: auto;
+        height: 80px;
+      }
+
+      .search-container {
+        margin-left: 100px;
+        margin-right: auto;
+        padding-top: 27px;
+      }
+
+      .search-container input {
+        width: 180px;
+        height: 34px;
+        border: none;
+        border-radius: 20px;
+        background: #ece7e4;
+        padding: 10px 15px;
+        font-size: 14px;
+        font-weight: 300;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 90px;
+        padding-top: 27px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #6b4f3d;
+        font-size: 18px;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.7;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 120px;
+        list-style: none;
+        background: white;
+        padding: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 15px;
+        color: #6b4f3d;
+        font-size: 16px;
+        text-decoration: none;
+      }
+
+      .dropdown-menu a:hover {
+        background: #f5f5f5;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 45px 24px 70px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 42px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+
+      .hero-image {
+        display: block;
+        width: min(100%, 900px);
+        height: 600px;
+        object-fit: cover;
+        margin: 40px auto 35px;
+      }
+
+      .recipe-title {
+        text-align: center;
+        font-size: 18px;
+        color: #7a5e4a;
+        margin-bottom: 20px;
+      }
+      .recipe-name {
+        text-align: center;
+        font-size: 18px;
+        color: #7a5e4a;
+      }
+
+      .recipe-intro {
+        max-width: 680px;
+        margin: -10px auto 35px;
+        text-align: center;
+        line-height: 1.8;
+        font-size: 16px;
+        color: #7a5e4a;
+      }
+
+      .recipe-card {
+        background: white;
+        padding: 32px;
+      }
+
+      .recipe-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        border-bottom: 1px solid #eadfd8;
+        padding-bottom: 22px;
+        margin-bottom: 28px;
+      }
+
+      .scale-control label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      .scale-control input {
+        width: 150px;
+        height: 36px;
+        border: 1px solid #d8c8bd;
+        border-radius: 20px;
+        padding: 0 14px;
+        color: #6b4f3d;
+        background: #faf7f5;
+        font-size: 15px;
+      }
+
+      .wake-lock {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 15px;
+      }
+
+      .switch {
+        position: relative;
+        width: 52px;
+        height: 28px;
+      }
+
+      .switch input {
+        display: none;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        inset: 0;
+        background: #d7c7bc;
+        border-radius: 30px;
+        transition: 0.2s;
+      }
+
+      .slider::before {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        left: 3px;
+        top: 3px;
+        background: white;
+        border-radius: 50%;
+        transition: 0.2s;
+      }
+
+      .switch input:checked + .slider {
+        background: #6b4f3d;
+      }
+
+      .switch input:checked + .slider::before {
+        transform: translateX(24px);
+      }
+
+      .section {
+        margin-top: 28px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .ingredients {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 30px;
+        text-decoration: none;
+        font-weight: 400;
+      }
+
+      .ingredients li {
+        background: #faf7f5;
+        padding: 12px 15px;
+        border-radius: 8px;
+      }
+
+      .ingredient-heading {
+        grid-column: 1 / -1;
+        background: transparent !important;
+        padding: 18px 0 4px !important;
+        font-size: 18px;
+        font-weight: 600;
+        color: #6b4f3d;
+      }
+
+      .steps {
+        padding-left: 22px;
+        line-height: 1.9;
+        font-weight: 400;
+      }
+
+      .steps li {
+        margin-bottom: 14px;
+      }
+
+      .amount {
+        font-weight: 600;
+        color: #4f3b2f;
+        text-decoration: underline;
+        text-decoration-color: #d8c8bd;
+        text-decoration-thickness: 2px;
+      }
+
+      @media (max-width: 750px) {
+        .navbar {
+          height: auto;
+          padding: 20px;
+          flex-wrap: wrap;
+        }
+
+        .search-container {
+          margin-left: 20px;
+        }
+
+        .nav-links {
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .recipe-top {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .ingredients {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-image {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a href="../Chlotreats_main.html" class="logo">
+        <img src="../images/Chlotreats_logo.png" alt="Chlotreats Logo" />
+      </a>
+
+      <div class="search-container">
+        <input type="text" placeholder="搜索" />
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="dropdown">
+            <a href="../蛋糕/全部蛋糕_主页.html">蛋糕</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/芝士蛋糕/芝士蛋糕_主页.html">芝士蛋糕</a></li>
+              <li><a href="/免烤蛋糕/免烤蛋糕_主页.html">免烤蛋糕</a></li>
+              <li><a href="/戚风蛋糕/戚风蛋糕_主页.html">戚风蛋糕</a></li>
+              <li><a href="/其他蛋糕/其他蛋糕_主页.html">其他蛋糕</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="../面包/全部面包_主页.html">面包</a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/面包/波兰种_主页.html">波兰种</a></li>
+              <li><a href="/面包/汤种_主页.html">汤种</a></li>
+              <li><a href="/面包/中种_主页.html">中种</a></li>
+              <li><a href="/面包/其他_主页.html">其他</a></li>
+            </ul>
+          </li>
+
+          <li><a href="/曲奇/曲奇_主页.html">曲奇</a></li>
+          <li><a href="/小甜点/小甜点_主页.html">小甜点</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1 id="recipeTitle"></h1>
+      <p id="recipeName" class="recipe-name"></p>
+
+      <img id="recipeImage" class="hero-image" src="" alt="" />
+
+      <p id="recipeIntro" class="recipe-intro"></p>
+
+      <section class="recipe-card">
+        <div class="recipe-top">
+          <div class="scale-control">
+            <label for="scale">份量倍数</label>
+            <input
+              id="scale"
+              type="number"
+              value="1"
+              min="0.25"
+              max="5"
+              step="0.25"
+            />
+          </div>
+
+          <div class="wake-lock">
+            <span>防止屏幕变暗</span>
+
+            <label class="switch">
+              <input type="checkbox" id="wakeLockToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>材料</h2>
+          <ul id="ingredientsList" class="ingredients"></ul>
+        </div>
+
+        <div class="section">
+          <h2>步骤</h2>
+          <ol id="stepsList" class="steps"></ol>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const recipes = {
+        /* No bake cheesecake */
+        "rare-cheesecake": {
+          title: "冻芝士蛋糕",
+          name: "Rare cheesecake",
+          image: "../images/rare-cheesecake.jpeg",
+          imagePosition: "center 58%",
+          imageZoom: 1,
+          intro:
+            "原方来自<a href='https://www.youtube.com/watch?v=nRNf4eJRB94&t=502s' target='_blank' style='color: #6b4f3d;'>Hida Mari</a>",
+
+          ingredients: [
+            { type: "heading", text: "饼底" },
+            { name: "消化饼干", amount: 100, unit: "g" },
+            { name: "黄油", amount: 35, unit: "g" },
+
+            { type: "heading", text: "芝士糊" },
+            { name: "吉利丁片", amount: 7, unit: "g" },
+            { name: "蛋黄", amount: 2, unit: "pc" },
+            { name: "蛋黄糊糖", displayName: "糖", amount: 40, unit: "g" },
+            { name: "牛奶", amount: 170, unit: "g" },
+            { name: "香草膏", amount: 0.5, unit: "tsp" },
+            { name: "奶油芝士", amount: 200, unit: "g" },
+            { name: "淡奶油", amount: 200, unit: "g" },
+            { name: "淡奶油糖", displayName: "糖", amount: 15, unit: "g" },
+            { name: "柠檬汁", amount: 5, unit: "g" },
+          ],
+
+          steps: [
+            "模具底部垫上油纸。",
+            "{消化饼干} 消化饼干放入密封袋中，用擀面杖压碎。",
+            "倒入 {黄油} 融化的黄油，混合均匀。",
+            "饼干碎倒入模具中，压平压紧实，冷藏备用。",
+            "{吉利丁片} 吉利丁片用冰水泡软。",
+            "分蛋，{蛋黄} 蛋黄、{香草膏} 香草膏和 {蛋黄糊糖} 糖用蛋抽搅拌至发白。",
+            "{牛奶} 牛奶加热至边缘冒小泡。",
+            "将热牛奶少量多次地倒入蛋黄糊中。",
+            "液体回锅搅拌加热至 80°C。",
+            "离火，加入泡软的吉利丁片，搅拌至融化。",
+            "隔冷水降温。",
+            "{奶油芝士} 软化的奶油芝士搅拌顺滑。",
+            "蛋奶糊少量多次地加入奶油芝士中，搅拌均匀。",
+            "{淡奶油} 淡奶油加入 {淡奶油糖} 糖，打发至 6 分，有纹路但还能滴落。",
+            "淡奶油分两次与蛋奶糊混匀。",
+            "挤入 {柠檬汁} 柠檬汁。",
+            "倒入模具，冷藏隔夜。",
+          ],
+        },
+
+        "blueberry-rare-cheesecake": {
+          title: "蓝莓冻芝士蛋糕",
+          name: "Blueberry rare cheesecake",
+          image: "../images/blueberry-rare-cheesecake.jpeg",
+          imagePosition: "center 65%",
+          imageZoom: 1,
+          intro:
+            "原方来自<a href='https://www.youtube.com/watch?v=Ux-fWT0wD1A&t=224s' target='_blank' style='color: #6b4f3d;'>Hida Mari</a>",
+
+          ingredients: [
+            { type: "heading", text: "蓝莓酱" },
+            { name: "冷冻或新鲜蓝莓", amount: 130, unit: "g" },
+            {
+              name: "蓝莓酱细砂糖",
+              displayName: "细砂糖",
+              amount: 25,
+              unit: "g",
+            },
+            {
+              name: "蓝莓酱柠檬汁",
+              displayName: "柠檬汁",
+              amount: 0.5,
+              unit: "个",
+            },
+            { name: "吉利丁片A", amount: 2, unit: "g" },
+
+            { type: "heading", text: "蛋糕底" },
+            { name: "消化饼干", amount: 6, unit: "片" },
+            { name: "融化黄油", amount: 35, unit: "g" },
+
+            { type: "heading", text: "芝士慕斯糊" },
+            { name: "奶油芝士", amount: 200, unit: "g" },
+            {
+              name: "芝士慕斯糊细砂糖",
+              displayName: "细砂糖",
+              amount: 40,
+              unit: "g",
+            },
+            { name: "无糖酸奶", amount: 50, unit: "g" },
+            { name: "牛奶", amount: 30, unit: "g" },
+            { name: "吉利丁片B", amount: 7, unit: "g" },
+            { name: "淡奶油", amount: 200, unit: "g" },
+            {
+              name: "芝士慕斯糊柠檬汁",
+              displayName: "柠檬汁",
+              amount: 0.5,
+              unit: "个",
+            },
+
+            { type: "heading", text: "装饰" },
+            {
+              name: "装饰淡奶油",
+              displayName: "淡奶油",
+              amount: 70,
+              unit: "g",
+            },
+            { name: "蓝莓果酱", amount: 15, unit: "g" },
+          ],
+
+          steps: [
+            "【蓝莓果酱】",
+            "{吉利丁片A} 吉利丁片A用冰水泡软，挤干水份。",
+            "{冷冻或新鲜蓝莓} 冷冻或新鲜蓝莓、{蓝莓酱细砂糖} 细砂糖和 {蓝莓酱柠檬汁} 柠檬汁倒入奶锅中，煮至沸腾。",
+            "关火，加入泡软的吉利丁，搅拌至融化。",
+            "用料理机、均质机或果汁机打烂。",
+            "放凉备用。",
+
+            "【蛋糕底】",
+            "{消化饼干} 消化饼干放入密封袋中，用擀面杖敲碎。",
+            "与 {融化黄油} 融化黄油混匀。",
+            "倒入模具中，压紧实后冷藏备用。",
+
+            "【芝士慕斯糊】",
+            "{吉利丁片B} 吉利丁片B用冰水泡软。",
+            "{奶油芝士} 奶油芝士室温软化，搅拌至顺滑。",
+            "依次倒入 {芝士慕斯糊细砂糖} 细砂糖和 {无糖酸奶} 无糖酸奶，分别搅拌均匀。",
+            "吉利丁片挤干水份，放入 {牛奶} 牛奶中，隔热水融化。",
+            "把吉利丁液倒入芝士糊中拌匀。",
+            "{淡奶油} 淡奶油打发至 6-7 分发，还有一点流动性时即可。",
+            "淡奶油和芝士糊翻拌均匀。",
+            "称 210g 原味慕斯糊，作为白色的顶层。",
+            "称 170g 慕斯糊与 40g 蓝莓酱混合，作为浅紫色的中层。",
+            "剩下所有慕斯糊和蓝莓酱混合均匀，作为最深色的底层。",
+            "先倒入最深色的慕斯糊，冷冻 20 分钟。",
+            "再倒入浅紫色的慕斯糊，冷冻 20 分钟。",
+            "最后倒入原味慕斯糊，冷藏隔夜定型。",
+
+            "【装饰】",
+            "{装饰淡奶油} 淡奶油和 {蓝莓果酱} 蓝莓果酱打发至 9 分。",
+            "装入裱花袋中冷藏 15 分钟后裱花。",
+          ],
+        },
+
+        /* cheesecake */
+        "matcha-hokkaido-cheesecake": {
+          title: "抹茶北海道芝士",
+          name: "Matcha Hokkaido cheesecake",
+          image: "../images/hokkaido-matcha-cheesecake.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro: "抹茶北海道芝士由抹茶海绵、抹茶烤芝士和原味芝士慕斯组成",
+
+          ingredients: [
+            { type: "heading", text: "抹茶海绵" },
+            { name: "海绵鸡蛋", displayName: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "海绵糖", displayName: "糖", amount: 90, unit: "g" },
+            { name: "低筋面粉", amount: 82, unit: "g" },
+            { name: "海绵抹茶粉", displayName: "抹茶粉", amount: 8, unit: "g" },
+            { name: "牛奶", amount: 37, unit: "g" },
+            { name: "油", amount: 37, unit: "g" },
+
+            { type: "heading", text: "抹茶烤芝士" },
+            { name: "奶油芝士", amount: 140, unit: "g" },
+            { name: "烤芝士糖", displayName: "糖", amount: 30, unit: "g" },
+            {
+              name: "烤芝士抹茶粉",
+              displayName: "抹茶粉",
+              amount: 4,
+              unit: "g",
+            },
+            {
+              name: "烤芝士淡奶油",
+              displayName: "淡奶油",
+              amount: 30,
+              unit: "g",
+            },
+            { name: "烤芝士鸡蛋", displayName: "鸡蛋", amount: 1, unit: "pc" },
+
+            { type: "heading", text: "原味芝士慕斯" },
+            { name: "蛋黄", amount: 1, unit: "pc" },
+            { name: "水", amount: 25, unit: "g" },
+            { name: "慕斯糖", displayName: "糖", amount: 25, unit: "g" },
+            { name: "吉利丁片", amount: 3, unit: "g" },
+            { name: "马斯卡彭", amount: 60, unit: "g" },
+            {
+              name: "慕斯淡奶油",
+              displayName: "淡奶油",
+              amount: 140,
+              unit: "g",
+            },
+            { name: "抹面奶油", amount: 50, unit: "g" },
+          ],
+
+          steps: [
+            "【抹茶海绵】",
+            "模具底部和四周垫油纸。",
+            "{海绵鸡蛋} 鸡蛋和 {海绵糖} 糖加热至 40°C。",
+            "{海绵抹茶粉} 抹茶粉和 {油} 油混合，与 {牛奶} 牛奶加热至 50°C。",
+            "蛋液高速 4 档打发 3 分钟。",
+            "蛋糊能写字且缓慢消失。",
+            "1 档打发 1 分钟。",
+            "筛入 {低筋面粉} 低筋面粉。",
+            "舀一勺面糊与抹茶液混匀。",
+            "和剩下的面糊拌匀。",
+            "入模具震两下，170°C 烤 30 分钟。",
+            "震两下取出蛋糕，撕掉油纸。",
+            "底部的皮切掉，切成 1cm 的蛋糕片。",
+            "剩余的蛋糕把皮切掉。",
+
+            "【抹茶烤芝士】",
+            "模具垫入蛋糕片和油纸。",
+            "预热 150°C。",
+            "{奶油芝士} 芝士软化，与 {烤芝士糖} 糖搅匀。",
+            "加入室温 {烤芝士鸡蛋} 鸡蛋。",
+            "{烤芝士抹茶粉} 抹茶粉与少量 {烤芝士淡奶油} 淡奶油加热融合。",
+            "抹茶奶油倒入芝士糊中。",
+            "150°C 烤 20-27 分钟。",
+
+            "【原味芝士慕斯】",
+            "四周换慕斯围边。",
+            "{吉利丁片} 吉利丁泡软挤干。",
+            "{蛋黄} 蛋黄、{水} 水和 {慕斯糖} 糖加热至 80°C。",
+            "融化吉利丁。",
+            "混入 {马斯卡彭} 芝士后过筛。",
+            "{慕斯淡奶油} 奶油打发至 6-7 分，分两次倒入芝士糊中。",
+            "冷藏 3 小时以上。",
+            "冷冻海绵蛋糕。",
+
+            "【组装】",
+            "料理机打碎蛋糕。",
+            "打发 {抹面奶油} 奶油。",
+            "蛋糕抹上奶油，粘上蛋糕碎。",
+            "冷藏 1 小时以上。",
+          ],
+        },
+
+        "caramel-cheesecake": {
+          title: "焦糖芝士蛋糕",
+          name: "Caramel cheesecake",
+          image: "../images/caramel-cheesecake.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "原方来自<a href='https://www.youtube.com/watch?v=sfeJzZe1wtg&t=341s' target='_blank' style='color: #6b4f3d;'>Hida Mari</a>",
+
+          ingredients: [
+            { type: "heading", text: "饼底" },
+            { name: "消化饼干", amount: 6, unit: "pc" },
+            { name: "无盐黄油", amount: 40, unit: "g" },
+
+            { type: "heading", text: "芝士糊" },
+            { name: "奶油芝士", amount: 200, unit: "g" },
+            { name: "马斯卡彭", amount: 100, unit: "g" },
+            { name: "糖", amount: 50, unit: "g" },
+            { name: "低粉", amount: 10, unit: "g" },
+            { name: "焦糖酱", amount: 60, unit: "g" },
+            { name: "全蛋", amount: 1, unit: "pc" },
+            { name: "蛋黄", amount: 1, unit: "pc" },
+            { name: "淡奶油", amount: 130, unit: "g" },
+            { name: "柠檬汁", amount: 5, unit: "g" },
+          ],
+
+          steps: [
+            "{消化饼干} 消化饼干放入密封袋中用擀面杖敲碎。",
+            "混入 {无盐黄油} 融化的黄油。",
+            "倒入模具中压紧实冷藏备用。",
+            "【芝士糊】",
+            "{奶油芝士} 奶油芝士和 {马斯卡彭} 马斯卡彭隔热水软化。",
+            "加 {糖} 细砂糖搅拌至融化。",
+            "筛入 {低粉} 低筋面粉。",
+            "倒入 {焦糖酱} 焦糖酱。",
+            "分别拌入 {全蛋} 全蛋、{蛋黄} 蛋黄和 {淡奶油} 淡奶油。",
+            "最后挤入 {柠檬汁} 柠檬汁。",
+            "奶酪糊过筛一遍。",
+            "倒入模具中。",
+            "放在深的烤盘中，倒入约一厘米高度的热水。",
+            "烤箱 180°C 烤 30 分钟。",
+            "转 150°C 烤 30 分钟。",
+          ],
+        },
+
+        "japanese-souffle-cheesecake": {
+          title: "轻乳酪蛋糕",
+          name: "Japanese souffle cheesecake",
+          image: "../images/轻乳酪蛋糕.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "配方来自<a href='https://m.xiachufang.com/recipe/100406604/' target='_blank' style='color: #6b4f3d;'>曼食慢语</a>",
+
+          ingredients: [
+            { name: "奶油奶酪", amount: 125, unit: "g" },
+            { name: "全脂牛奶", amount: 80, unit: "ml" },
+            { name: "黄油", amount: 25, unit: "g" },
+            { name: "中等大小的鸡蛋", amount: 3, unit: "个" },
+            { name: "细砂糖", amount: 60, unit: "g" },
+            { name: "低筋面粉", amount: 20, unit: "g" },
+            { name: "玉米淀粉", amount: 10, unit: "g" },
+          ],
+
+          steps: [
+            "将 {中等大小的鸡蛋} 中等大小的鸡蛋的蛋清和蛋黄分离。",
+            "在一个小锅内倒入少许开水，在锅上放一个大碗，让碗底能接触到热蒸汽，而不是直接接触热水。",
+            "在碗中倒入 {奶油奶酪} 奶油奶酪、{全脂牛奶} 全脂牛奶和 {黄油} 黄油，让奶酪和黄油融化。",
+            "用蛋抽混合成顺滑无颗粒的奶酪糊。",
+            "将蛋黄一个一个加入到奶酪糊中，每加入一个蛋黄都要快速搅拌一下，让蛋黄与奶酪糊均匀混合。",
+            "将 {低筋面粉} 低筋面粉和 {玉米淀粉} 玉米淀粉混合过筛，分两次倒入奶酪糊中，用蛋抽搅拌成顺滑的面糊。",
+            "将面糊过筛，去掉残留的小疙瘩，然后包上保鲜膜放入冰箱冷藏约 20 分钟，至面糊变得较为浓稠。",
+            "取一小块黄油涂抹在模具内部，在底部垫上烘焙纸。烤箱预热 160°C。",
+            "在面糊冷藏得差不多时再来打发蛋清。",
+            "往蛋清中加入一半的 {细砂糖} 细砂糖，用厨师机或手持打蛋器中速打发至起粗泡。",
+            "然后调至中高速继续打发，再加入剩下的一半细砂糖，将蛋清打发至湿性发泡即可。用 KitchenAid 厨师机，4-6 速档打发约 2-3 分钟，最后再低速打几秒钟整理气泡。",
+            "将打发好的蛋白转移至搅拌盆中待用。",
+            "取 1/3 蛋白加入到冷藏过的奶酪面糊中，翻拌均匀。",
+            "再将面糊倒入剩下的蛋白中，继续用翻拌的手法拌匀。",
+            "面糊倒入模具中，放入一个比蛋糕模具略大的烤盘中。往烤盘内注入 1-2cm 高的清水，注意不要让蛋糕模具飘起来。",
+            "送入烤箱，放在最下层，先 160°C 烤 20 分钟，然后降低温度至 130°C，继续烤约 60 分钟，至蛋糕完全烤熟。",
+            "关火后将烤箱门开一个小缝，让蛋糕在烤箱内自然冷却半小时再取出脱模。",
+            "脱模后的蛋糕冷却至室温，放入冰箱冷藏至少 4 小时后再吃。",
+          ],
+        },
+
+        "blueberry-crumble-round-cheesecake": {
+          title: "蓝莓酥粒圆形芝士蛋糕(6寸)",
+          name: "Blueberry crumble round cheesecake (6-inch)",
+          image: "../images/蓝莓酥粒芝士蛋糕6寸.png",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "灵感来自<a href='https://www.youtube.com/watch?v=TcMHdnnRNfY&t=368s' target='_blank' style='color: #6b4f3d;'>Hida Mari</a><br>蓝莓我用了冷冻的，无需提前解冻",
+          ingredients: [
+            { type: "heading", text: "酥粒" },
+            {
+              name: "酥粒无盐黄油",
+              displayName: "无盐黄油",
+              amount: 20,
+              unit: "g",
+            },
+            { name: "酥粒低粉", displayName: "低粉", amount: 30, unit: "g" },
+            {
+              name: "酥粒细砂糖",
+              displayName: "细砂糖",
+              amount: 30,
+              unit: "g",
+            },
+            { name: "杏仁粉", amount: 30, unit: "g" },
+            { name: "酥粒盐", displayName: "盐", amount: 0.5, unit: "g" },
+
+            { type: "heading", text: "饼底" },
+            { name: "消化饼", amount: 6, unit: "片" },
+            { name: "融化的无盐黄油", amount: 35, unit: "g" },
+
+            { type: "heading", text: "芝士糊" },
+            { name: "奶油芝士", amount: 250, unit: "g" },
+            { name: "酸奶油", amount: 100, unit: "g" },
+            {
+              name: "芝士糊细砂糖",
+              displayName: "细砂糖",
+              amount: 50,
+              unit: "g",
+            },
+            { name: "鸡蛋", amount: 2, unit: "个" },
+            { name: "淡奶油", amount: 100, unit: "g" },
+            { name: "芝士糊低粉", displayName: "低粉", amount: 10, unit: "g" },
+            { name: "柠檬汁", amount: 10, unit: "g" },
+            { name: "蓝莓", amount: 100, unit: "g" },
+          ],
+
+          steps: [
+            "{奶油芝士} 奶油芝士放置室温软化。",
+            "将 {酥粒无盐黄油} 无盐黄油、{酥粒低粉} 低粉、{酥粒细砂糖} 细砂糖、{杏仁粉} 杏仁粉和 {酥粒盐} 盐用手搓成小颗粒，冷藏备用。",
+            "模具底部和侧面贴上油纸。",
+            "{消化饼} 消化饼放入密封袋中，用擀面杖压碎。",
+            "倒入 {融化的无盐黄油} 融化的无盐黄油，混合均匀。",
+            "饼干碎倒入模具中，压平压紧实，冷藏备用。",
+
+            "【芝士糊】",
+            "天气冷可以隔热水软化奶油芝士。",
+            "{奶油芝士} 奶油芝士和 {酸奶油} 酸奶油搅拌均匀细腻。",
+            "倒入 {芝士糊细砂糖} 细砂糖，搅拌均匀。",
+            "{鸡蛋} 鸡蛋一个一个地磕入，每加一个都要搅匀。",
+            "倒入 {淡奶油} 淡奶油，搅匀。",
+            "筛入 {芝士糊低粉} 低粉，拌匀。",
+            "加入 {柠檬汁} 柠檬汁。",
+            "芝士糊过筛，然后倒入模具中。",
+            "预热烤箱 180°C，先烤 10 分钟后取出。",
+            "放上 {蓝莓} 蓝莓，撒上酥粒。",
+            "180°C 烤 15 分钟，再升温至 190°C 烤 20 分钟。",
+            "刚烤出来的芝士糊还没完全凝固，还可以晃动。",
+            "冷却后转入冰箱冷藏过夜。",
+          ],
+        },
+
+        "blueberry-crumble-square-cheesecake": {
+          title: "蓝莓酥粒方形芝士蛋糕",
+          name: "Blueberry crumble square cheesecake",
+          image: "../images/蓝莓酥粒方形芝士蛋糕.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "配方来自<a href='https://www.youtube.com/watch?v=fbyYWURPUGI&t=185s' target='_blank' style='color: #6b4f3d;'>Old-Fashioned Bakery</a> <br>模具20x20厘米 ",
+
+          ingredients: [
+            { type: "heading", text: "酥粒" },
+            {
+              name: "酥粒无盐黄油",
+              displayName: "无盐黄油",
+              amount: 145,
+              unit: "g",
+            },
+            {
+              name: "酥粒细砂糖",
+              displayName: "细砂糖",
+              amount: 85,
+              unit: "g",
+            },
+            { name: "低粉", amount: 200, unit: "g" },
+            { name: "杏仁粉", amount: 60, unit: "g" },
+            { name: "盐", amount: 2, unit: "g" },
+            { name: "肉桂粉", amount: 1, unit: "g" },
+
+            { type: "heading", text: "芝士糊" },
+            { name: "奶油芝士", amount: 220, unit: "g" },
+            {
+              name: "芝士糊细砂糖",
+              displayName: "细砂糖",
+              amount: 40,
+              unit: "g",
+            },
+            { name: "鸡蛋", amount: 1, unit: "pc" },
+            { name: "淡奶油", amount: 100, unit: "g" },
+            {
+              name: "芝士糊柠檬汁",
+              displayName: "柠檬汁",
+              amount: 9,
+              unit: "g",
+            },
+            {
+              name: "芝士糊玉米淀粉",
+              displayName: "玉米淀粉",
+              amount: 7,
+              unit: "g",
+            },
+
+            { type: "heading", text: "蓝莓" },
+            { name: "冷冻蓝莓", amount: 230, unit: "g" },
+            {
+              name: "蓝莓细砂糖",
+              displayName: "细砂糖",
+              amount: 10,
+              unit: "g",
+            },
+            { name: "蓝莓柠檬汁", displayName: "柠檬汁", amount: 8, unit: "g" },
+            {
+              name: "蓝莓玉米淀粉",
+              displayName: "玉米淀粉",
+              amount: 8,
+              unit: "g",
+            },
+          ],
+
+          steps: [
+            "【酥粒做法】",
+            "软化 {酥粒无盐黄油} 无盐黄油。",
+            "倒入 {酥粒细砂糖} 细砂糖和 {盐} 盐，搅拌顺滑。",
+            "拌入 {低粉} 低粉、{杏仁粉} 杏仁粉和 {肉桂粉} 肉桂粉。",
+            "大致混匀后用手捏成酥粒，大颗一点也没关系。",
+            "大约倒一半的酥粒入模具中，另一半冷冻备用。",
+            "铺满底部，用手压平整。",
+            "饼皮 170°C 烤 10 分钟。",
+            "取出放凉，开始准备芝士糊。",
+
+            "【芝士糊】",
+            "{奶油芝士} 奶油芝士软化，拌入 {芝士糊细砂糖} 细砂糖。",
+            "用蛋抽搅入 {鸡蛋} 鸡蛋。",
+            "倒入 {淡奶油} 淡奶油和 {芝士糊柠檬汁} 柠檬汁。",
+            "筛入 {芝士糊玉米淀粉} 玉米淀粉。",
+            "{冷冻蓝莓} 冷冻蓝莓与 {蓝莓细砂糖} 细砂糖、{蓝莓柠檬汁} 柠檬汁和 {蓝莓玉米淀粉} 玉米淀粉混合。",
+            "芝士糊倒在饼皮上。",
+            "铺上蓝莓，撒上剩下的酥粒。",
+            "再放几颗蓝莓装饰。",
+            "烤箱 170°C 烤 40 分钟。",
+            "取出放凉后冷藏隔夜。",
+          ],
+        },
+
+        "earl-grey-basque": {
+          title: "伯爵茶巴斯克蛋糕",
+          name: "Earl Grey basque cheesecake",
+          image: "../images/伯爵茶巴斯克蛋糕.jpeg",
+          imagePosition: "center 75%",
+          intro:
+            "伯爵红茶巴斯克蛋糕带有淡淡佛手柑茶香，搭配顺滑芝士和微焦表面。冷藏隔夜后口感更细腻，配上蓝莓酱和香草冰淇淋会更好吃。",
+
+          ingredients: [
+            { name: "奶油芝士", amount: 400, unit: "g" },
+            { name: "细砂糖", amount: 100, unit: "g" },
+            { name: "鸡蛋", amount: 4, unit: "个" },
+            { name: "淡奶油", amount: 150, unit: "g" },
+            { name: "伯爵茶", amount: 6, unit: "g" },
+            { name: "香草精", amount: 0.5, unit: "tsp" },
+            { name: "蓝莓", amount: 150, unit: "g" },
+            { name: "蓝莓酱细砂糖", amount: 15, unit: "g" },
+            { name: "蓝莓酱柠檬汁", amount: 0.25, unit: "g" },
+          ],
+
+          steps: [
+            "{淡奶油} 淡奶油小火加热至锅边冒小泡泡。",
+            "关火放入 {伯爵茶} 伯爵茶，浸泡约十分钟。",
+            "期间挤压茶包，帮助味道渗出来。",
+            "把茶包挤干取出。",
+            "冷却后再使用，也可以提前一晚做好冷藏。",
+            "蛋糕模具中垫入油纸。",
+            "烤箱预热 230°C。",
+            "{奶油芝士} 奶油芝士微波炉加热软化，每加热 10 秒检查状态。",
+            "加入 {细砂糖} 细砂糖混匀。",
+            "每加一个 {鸡蛋} 鸡蛋都要搅拌均匀后再加下一个。",
+            "倒入伯爵茶奶油，不足 {淡奶油} 淡奶油要额外补充。",
+            "用筛网过滤奶酪糊到模具中。",
+            "230°C 烤 25 分钟。",
+            "刚烤好的蛋糕是会晃动的。",
+            "冷却后冷藏隔夜。",
+            "将 {蓝莓} 蓝莓、{蓝莓酱细砂糖} 细砂糖和 {蓝莓酱柠檬汁} 柠檬汁倒入奶锅中煮开。",
+            "酱汁稍微变浓稠后即可，冷却备用。",
+            "刀要先用热水烫热，会让蛋糕切面更整齐。",
+            "配上蓝莓酱和香草冰淇淋。",
+          ],
+        },
+
+        "matcha-basque": {
+          title: "抹茶巴斯克蛋糕",
+          name: "Matcha basque cheesecake",
+          image: "../images/抹茶巴斯克蛋糕.jpeg",
+          intro:
+            "原方用了 250°C 来烤，但 230°C 烤出来的颜色已经很深了。<br>原方来自 emojoie, 原味改成了抹茶风味<br>抹茶粉来自Zenwonders",
+
+          ingredients: [
+            { name: "奶油芝士", amount: 400, unit: "g" },
+            { name: "细砂糖", amount: 100, unit: "g" },
+            { name: "鸡蛋", amount: 4, unit: "个" },
+            { name: "淡奶油", amount: 150, unit: "g" },
+            { name: "抹茶粉", amount: 20, unit: "g" },
+            { name: "香草精", amount: 0.5, unit: "小勺" },
+          ],
+
+          steps: [
+            "{抹茶粉} 抹茶粉过筛到碗中。",
+            "隔热水倒入 {淡奶油} 淡奶油。",
+            "搅拌成较细腻的抹茶酱。",
+            "蛋糕模具中垫入油纸。",
+            "烤箱预热 230°C。",
+            "{奶油芝士} 奶油芝士微波炉加热软化，每加热 10 秒检查状态。",
+            "加入 {细砂糖} 细砂糖混匀。",
+            "磕入 {鸡蛋} 鸡蛋，每加一个都要搅拌均匀后再加下一个。",
+            "倒入抹茶奶油。",
+            "用筛网过滤奶酪糊到模具中。",
+            "230°C 烤 23 分钟。",
+            "冷却后冷藏隔夜。",
+            "刀要先用热水烫热，会让蛋糕切面更整齐。",
+          ],
+        },
+
+        "thai-tea-basque": {
+          title: "泰茶巴斯克蛋糕",
+          name: "Thai tea basque cheesecake",
+          image: "../images/泰茶巴斯克蛋糕.jpeg",
+          imagePosition: "center 55%",
+          intro: "原方来自 emojoie<br>原味改成了泰式奶茶风味",
+
+          ingredients: [
+            { name: "淡奶油", amount: 200, unit: "g" },
+            { name: "泰式奶茶茶叶", amount: 20, unit: "g" },
+            { name: "奶油奶酪", amount: 400, unit: "g" },
+            { name: "细砂糖", amount: 100, unit: "g" },
+            { name: "鸡蛋", amount: 3, unit: "个" },
+            { name: "玉米淀粉", amount: 10, unit: "g" },
+            { name: "柠檬汁", amount: 10, unit: "g" },
+          ],
+
+          steps: [
+            "{淡奶油} 淡奶油小火加热至锅边冒小泡泡。",
+            "关火放入 {泰式奶茶茶叶} 泰式奶茶茶叶，盖上盖子焖十分钟。",
+            "将淡奶油过筛，冷却至室温。",
+            "过筛后要补足到 {淡奶油} 淡奶油。",
+            "模具垫入烘焙纸。",
+            "烤箱预热 230°C。",
+            "{奶油奶酪} 奶油奶酪微波炉稍微软化。",
+            "加入 {细砂糖} 细砂糖，搅拌顺滑。",
+            "{鸡蛋} 鸡蛋每加一个都要搅拌均匀后再加下一个。",
+            "倒入泰茶奶油。",
+            "筛入 {玉米淀粉} 玉米淀粉。",
+            "挤入 {柠檬汁} 柠檬汁。",
+            "用蛋抽搅拌均匀。",
+            "面糊过筛到模具中。",
+            "烤箱 230°C，中层烤 25 分钟。",
+            "不要脱模，放凉后冷藏隔夜。",
+          ],
+        },
+
+        "pistachio-basque": {
+          title: "开心果巴斯克蛋糕",
+          name: "Pistachio basque cheesecake",
+          image: "../images/开心果巴斯克蛋糕.jpeg",
+          intro: "开心果酱是自己做的</br>去皮后放入料理机中打成酱合",
+
+          ingredients: [
+            { name: "奶油奶酪", amount: 350, unit: "g" },
+            { name: "细砂糖", amount: 100, unit: "g" },
+            { name: "开心果酱", amount: 75, unit: "g" },
+            { name: "鸡蛋", amount: 3, unit: "个" },
+            { name: "淡奶油", amount: 200, unit: "g" },
+            { name: "香草精", amount: 1, unit: "小勺" },
+            { name: "玉米淀粉", amount: 15, unit: "g" },
+          ],
+
+          steps: [
+            "烤箱预热 230°C，模具垫入烘焙纸。",
+            "{奶油奶酪} 奶油奶酪微波炉稍微软化。",
+            "加入 {细砂糖} 细砂糖，搅拌顺滑。",
+            "倒入{开心果酱}开心果酱。",
+            "{鸡蛋} 鸡蛋每加一个都要搅拌均匀后再加下一个。",
+            "加入 {淡奶油} 淡奶油和 {香草精} 香草精，搅拌均匀。",
+            "筛入 {玉米淀粉} 玉米淀粉。",
+            "用蛋抽搅拌均匀，面糊过筛到模具中。",
+            "烤箱 230°C，中层烤 26 分钟。",
+            "不要脱模，放凉后冷藏隔夜。",
+          ],
+        },
+
+        /* chiffon cakes */
+
+        "pandan-cake-2": {
+          title: "斑斓蛋糕2.0",
+          name: "Pandan chiffon",
+          image: "../images/pandan-cake.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro: "斑斓戚风搭配椰奶冻、斑斓卡仕达和芒果夹心",
+          ingredients: [
+            { type: "heading", text: "斑斓精华" },
+            { name: "斑斓叶", amount: 100, unit: "g" },
+            { name: "水", amount: 300, unit: "g" },
+            { type: "heading", text: "斑斓戚风" },
+            { name: "戚风鸡蛋", displayName: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "牛奶", amount: 27, unit: "g" },
+            { name: "植物油", amount: 37, unit: "g" },
+            {
+              name: "戚风斑斓汁",
+              displayName: "斑斓汁",
+              amount: 23,
+              unit: "g",
+            },
+            { name: "低筋面粉", amount: 60, unit: "g" },
+            {
+              name: "戚风细砂糖",
+              displayName: "细砂糖",
+              amount: 55,
+              unit: "g",
+            },
+            { type: "heading", text: "椰奶冻" },
+            { name: "奶冻牛奶", displayName: "牛奶", amount: 70, unit: "g" },
+            {
+              name: "奶冻淡奶油",
+              displayName: "淡奶油",
+              amount: 35,
+              unit: "g",
+            },
+            { name: "椰奶", amount: 50, unit: "g" },
+            { name: "奶冻糖", displayName: "糖", amount: 15, unit: "g" },
+            { name: "吉利丁片", amount: 3, unit: "g" },
+            { type: "heading", text: "斑斓卡仕达" },
+            { name: "蛋黄", amount: 1, unit: "pc" },
+            { name: "卡仕达糖", displayName: "糖", amount: 15, unit: "g" },
+            { name: "香草精", amount: 1, unit: "g" },
+            { name: "玉米淀粉", amount: 6, unit: "g" },
+            {
+              name: "卡仕达斑斓汁",
+              displayName: "斑斓汁",
+              amount: 10,
+              unit: "g",
+            },
+            { name: "椰浆", amount: 50, unit: "g" },
+            { name: "卡仕达牛奶", displayName: "牛奶", amount: 40, unit: "g" },
+            { type: "heading", text: "奶油" },
+            { name: "淡奶油", amount: 460, unit: "g" },
+            { name: "奶油糖", displayName: "糖", amount: 42, unit: "g" },
+          ],
+          steps: [
+            "【斑斓精华】",
+            "{斑斓叶} 斑斓叶和 {水} 水用破壁机或料理机打成汁。",
+            "过滤，装入透明容器中冷藏静置 1 天。",
+            "倒掉表面的水，剩下底部深绿的浓缩斑斓汁。",
+            "【斑斓戚风】",
+            "后蛋法制作戚风。",
+            "150°C 烤 55 分钟，出炉后倒扣冷却。",
+            "【椰奶冻】",
+            "{吉利丁片} 吉利丁片用冰水泡软。",
+            "{奶冻牛奶} 牛奶、{奶冻淡奶油} 淡奶油、{椰奶} 椰奶和 {奶冻糖} 糖倒入奶锅中，加热至糖融化。",
+            "50°C 左右放入吉利丁片，搅拌均匀。",
+            "倒入圆形容器中，冷藏 3 小时至定型。",
+            "【卡仕达酱】",
+            "{蛋黄} 蛋黄和 {卡仕达糖} 糖搅拌至发白。",
+            "拌入 {香草精} 香草精和 {玉米淀粉} 玉米淀粉。",
+            "{卡仕达斑斓汁} 斑斓汁、{椰浆} 椰浆和 {卡仕达牛奶} 牛奶中小火加热至边缘冒泡。",
+            "液体少量多次加入蛋黄糊中，混合均匀。",
+            "倒回锅中，小火加热至浓稠，边加热边搅拌。",
+            "盛出冷藏备用。",
+            "【奶油和组装】",
+            "{淡奶油} 淡奶油加 {奶油糖} 糖打发至 7-8 分，取 260g 抹面和裱花。",
+            "剩下的奶油继续打发至较硬，用来做夹心。",
+            "蛋糕分成 3 片。",
+            "下面夹层是奶油、卡仕达酱、椰奶冻和奶油。",
+            "上面夹层是奶油、芒果和奶油。",
+            "蛋糕表面抹卡仕达酱。",
+          ],
+        },
+
+        "biscoff-cake": {
+          title: "焦糖饼干蛋糕",
+          name: "Biscoff cake",
+          image: "../images/biscoff-cake.jpeg",
+          imagePosition: "center 55%",
+          imageZoom: 1,
+          intro:
+            "焦糖饼干蛋糕使用香草戚风、焦糖颗粒和焦糖芝士奶油，表面沾满饼干碎，焦糖香气很浓。",
+          ingredients: [
+            { type: "heading", text: "戚风" },
+            { name: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "油", amount: 38, unit: "g" },
+            { name: "牛奶", amount: 53, unit: "g" },
+            { name: "香草膏", amount: 0.25, unit: "tsp" },
+            { name: "低筋面粉", amount: 67, unit: "g" },
+            {
+              name: "戚风细砂糖",
+              displayName: "细砂糖",
+              amount: 55,
+              unit: "g",
+            },
+            { type: "heading", text: "焦糖颗粒" },
+            {
+              name: "焦糖颗粒细砂糖",
+              displayName: "细砂糖",
+              amount: 240,
+              unit: "g",
+            },
+            { type: "heading", text: "焦糖芝士奶油" },
+            { name: "奶油芝士", amount: 150, unit: "g" },
+            { name: "焦糖颗粒", amount: 160, unit: "g" },
+            { name: "海盐", amount: 0.25, unit: "tsp" },
+            {
+              name: "奶油香草膏",
+              displayName: "香草膏",
+              amount: 2,
+              unit: "tsp",
+            },
+            { name: "淡奶油", amount: 288, unit: "g" },
+            { name: "焦糖饼干", amount: 9, unit: "片" },
+          ],
+          steps: [
+            "【戚风】",
+            "后蛋法制作戚风。",
+            "150°C 烤 55 分钟，出炉后倒扣冷却。",
+            "【焦糖颗粒】",
+            "锅中先放部分 {焦糖颗粒细砂糖} 细砂糖，中火加热。",
+            "边缘融化成糖浆时，分 3 次加入剩下的糖。",
+            "转中小火，边加热边搅拌。",
+            "等糖完全融化并变成琥珀色后离火。",
+            "立刻倒在烘焙纸上，冷却 10-15 分钟至变硬。",
+            "掰成碎片，用料理机搅拌成细沙状。",
+            "马上放入密封容器中保存。",
+            "【焦糖芝士奶油】",
+            "{奶油芝士} 奶油芝士不用软化，打蛋器低速稍微搅打均匀。",
+            "低速混入 {焦糖颗粒} 焦糖颗粒和 {海盐} 海盐。",
+            "倒入 {奶油香草膏} 香草膏和一半 {淡奶油} 淡奶油，高速混匀。",
+            "加入剩下的淡奶油，打至 8 分发。",
+            "冷藏 10-30 分钟让焦糖颗粒完全融化，中途稍微搅拌一下。",
+            "焦糖奶油冷藏后会变稀，再次打硬方便夹心和抹面。",
+            "蛋糕切成 3 片。",
+            "奶油夹心和抹面，不用很光滑。",
+            "{焦糖饼干} 焦糖饼干敲碎，沾满蛋糕表面。",
+          ],
+        },
+
+        "earl-grey-cake": {
+          title: "伯爵红茶蛋糕",
+          name: "Earl Grey cake",
+          image: "../images/earl-grey-chiffon.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "伯爵红茶蛋糕有红茶戚风、伯爵奶油、奶冻和糯米圆子，茶香柔和，夹层丰富。",
+          ingredients: [
+            { type: "heading", text: "戚风" },
+            { name: "戚风牛奶", displayName: "牛奶", amount: 64, unit: "g" },
+            { name: "伯爵茶", amount: 4, unit: "g" },
+            { name: "油", amount: 26, unit: "g" },
+            { name: "盐", amount: 1, unit: "g" },
+            { name: "低筋面粉", amount: 60, unit: "g" },
+            { name: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "戚风糖", displayName: "糖", amount: 50, unit: "g" },
+            { type: "heading", text: "伯爵奶油" },
+            { name: "奶油茶包", displayName: "茶包", amount: 8, unit: "g" },
+            {
+              name: "奶油淡奶油",
+              displayName: "淡奶油",
+              amount: 500,
+              unit: "g",
+            },
+            { name: "奶油糖", displayName: "糖", amount: 50, unit: "g" },
+            { name: "biscoff饼干", amount: 5, unit: "片" },
+            { type: "heading", text: "糯米圆子" },
+            { name: "糯米粉", amount: 40, unit: "g" },
+            { name: "温热水", amount: 35, unit: "g" },
+            { name: "圆子糖", displayName: "糖", amount: 5, unit: "g" },
+            { type: "heading", text: "伯爵奶冻" },
+            {
+              name: "奶冻淡奶油",
+              displayName: "淡奶油",
+              amount: 50,
+              unit: "g",
+            },
+            { name: "奶冻牛奶", displayName: "牛奶", amount: 110, unit: "g" },
+            { name: "奶冻糖", displayName: "糖", amount: 15, unit: "g" },
+            { name: "奶冻茶包", displayName: "茶包", amount: 2, unit: "g" },
+            { name: "吉利丁片", amount: 3, unit: "g" },
+          ],
+          steps: [
+            "【戚风】",
+            "{戚风牛奶} 牛奶加热至冒小泡后关火，剪开茶包倒入 {伯爵茶} 伯爵茶，盖上盖子焖 3 分钟。",
+            "盛出冷却至室温，奶茶和茶叶总重量要有 {戚风牛奶}，不够需额外补足。",
+            "奶茶、{油} 油和 {盐} 盐混合均匀。",
+            "筛入 {低筋面粉} 低筋面粉，Z 字拌匀，最后混入蛋黄。",
+            "烤箱预热 150°C。",
+            "蛋白分三次加入 {戚风糖} 糖，打发至硬性发泡。",
+            "取 1/3 蛋白霜与蛋黄糊翻拌均匀，再倒回剩下蛋白霜中拌匀。",
+            "150°C 烤 55 分钟。",
+            "【伯爵奶油】",
+            "{奶油淡奶油} 淡奶油煮至锅边冒小泡后关火。",
+            "剪开 {奶油茶包} 茶包倒入茶叶，搅拌均匀后盛出。",
+            "保鲜膜贴着奶油表面，冷藏隔夜。",
+            "打发奶油前用筛网过滤，如果奶油不足 {奶油淡奶油} 需额外增加。",
+            "奶油加 {奶油糖} 糖打发至 7 分，取 210g 抹面，冷藏备用。",
+            "剩下的继续打发至 9 分，取 100g 裱花冷藏备用，剩下做夹心。",
+            "【糯米丸子】",
+            "{糯米粉} 糯米粉、{温热水} 温热水和 {圆子糖} 糖揉成团。",
+            "搓成小圆子，热水下锅煮到浮起。",
+            "捞出泡冷水，沥干。",
+            "【奶冻】",
+            "{吉利丁片} 吉利丁片用冰水泡软。",
+            "{奶冻淡奶油} 淡奶油、{奶冻牛奶} 牛奶、{奶冻糖} 糖和 {奶冻茶包} 茶包加热至锅边冒小泡后关火。",
+            "加热时用刮刀挤压茶包，冷却 5 分钟后融化吉利丁。",
+            "过滤到模具中冷却，冷藏至定型。",
+          ],
+        },
+
+        "blueberry-cream-cheese-chiffon-cake": {
+          title: "蓝莓芝士奶油戚风蛋糕",
+          name: "Blueberry cream cheese chiffon cake",
+          image: "../images/blueberry-chiffon.jpeg",
+          imagePosition: "center 55%",
+          imageZoom: 1,
+          intro:
+            "原方来自<a href='https://www.youtube.com/watch?v=oaRRrSqGFmU&t=398s' target='_blank' style='color: #6b4f3d; text-decoration: underline;'>Old-Fashioned Bakery</a><br>原方用了全蛋海绵但我更喜欢戚风</a>",
+
+          ingredients: [
+            { type: "heading", text: "戚风" },
+            { name: "戚风鸡蛋", displayName: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "油", amount: 38, unit: "g" },
+            { name: "牛奶", amount: 53, unit: "g" },
+            { name: "香草膏", amount: 0.25, unit: "tsp" },
+            { name: "低筋面粉", amount: 67, unit: "g" },
+            {
+              name: "戚风细砂糖",
+              displayName: "细砂糖",
+              amount: 55,
+              unit: "g",
+            },
+
+            { type: "heading", text: "蓝莓酱" },
+            { name: "蓝莓", amount: 200, unit: "g" },
+            { name: "蓝莓酱糖", displayName: "糖", amount: 37, unit: "g" },
+            {
+              name: "蓝莓酱柠檬汁",
+              displayName: "柠檬汁",
+              amount: 15,
+              unit: "g",
+            },
+
+            { type: "heading", text: "蓝莓芝士奶油" },
+            { name: "淡奶油", amount: 342, unit: "g" },
+            { name: "奶油芝士", amount: 64, unit: "g" },
+            { name: "奶油糖", displayName: "糖", amount: 35, unit: "g" },
+            {
+              name: "奶油蓝莓酱",
+              displayName: "蓝莓酱",
+              amount: 72,
+              unit: "g",
+            },
+
+            { type: "heading", text: "夹心" },
+            {
+              name: "夹心蓝莓酱",
+              displayName: "蓝莓酱",
+              amount: 100,
+              unit: "g",
+            },
+          ],
+
+          steps: [
+            "【戚风】",
+            "后蛋法制作戚风。",
+            "150°C 烤 55 分钟，出炉后倒扣冷却。",
+
+            "【蓝莓酱】",
+            "{蓝莓} 蓝莓、{蓝莓酱糖} 糖和 {蓝莓酱柠檬汁} 柠檬汁倒入锅中。",
+            "中小火加热。",
+            "边加热边按压蓝莓。",
+            "酱汁变浓稠即可。",
+            "冷却备用。",
+
+            "【蓝莓芝士奶油】",
+            "{奶油芝士} 奶油芝士软化。",
+            "加入 {奶油糖} 糖，低速打至顺滑。",
+            "倒入 1/3 的 {淡奶油} 淡奶油，搅打均匀。",
+            "再倒入剩下的淡奶油。",
+            "打发至 8 分。",
+            "倒入 {奶油蓝莓酱} 蓝莓酱，继续打发至纹路变硬挺。",
+            "盛出一半的奶油冷藏，后面用来抹面。",
+
+            "【组装】",
+            "蛋糕片先均匀地抹上约 50g 蓝莓酱。",
+            "抹上一层奶油。",
+            "放上蓝莓。",
+            "再用一层奶油把蓝莓盖住。",
+            "盖上另一片蛋糕，重复以上步骤。",
+            "额外打发原味淡奶油至 9 分，用来裱花。",
+            "最后用蓝莓装饰。",
+          ],
+        },
+
+        "choco-chiffon": {
+          title: "巧克力蛋糕",
+          name: "Chocolate chiffon cake",
+          image: "../images/choco-chiffon.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro: "巧克力戚风（方子出于爱烘焙的阿猪）<br>用了70%的黑巧",
+
+          ingredients: [
+            { type: "heading", text: "巧克力戚风" },
+            { name: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "植物油", amount: 37, unit: "g" },
+            { name: "可可粉", amount: 15, unit: "g" },
+            { name: "牛奶", amount: 70, unit: "g" },
+            { name: "低筋面粉", amount: 55, unit: "g" },
+            { name: "细砂糖", amount: 60, unit: "g" },
+
+            { type: "heading", text: "巧克力奶油" },
+            {
+              name: "甘纳许淡奶油",
+              displayName: "淡奶油",
+              amount: 80,
+              unit: "g",
+            },
+            {
+              name: "奶油巧克力",
+              displayName: "70% 巧克力",
+              amount: 80,
+              unit: "g",
+            },
+            {
+              name: "打发淡奶油",
+              displayName: "淡奶油",
+              amount: 320,
+              unit: "g",
+            },
+            {
+              name: "奶油细砂糖",
+              displayName: "细砂糖",
+              amount: 33,
+              unit: "g",
+            },
+
+            { type: "heading", text: "巧克力淋面" },
+            {
+              name: "淋面黑巧克力",
+              displayName: "70% 巧克力",
+              amount: 20,
+              unit: "g",
+            },
+            { name: "白巧克力", amount: 13, unit: "g" },
+            {
+              name: "淋面淡奶油",
+              displayName: "淡奶油",
+              amount: 33,
+              unit: "g",
+            },
+          ],
+
+          steps: [
+            "【巧克力戚风】",
+            "中小火加热 {植物油} 植物油 15-20 秒，表面出现涟漪后关火。",
+            "将热油倒入 {可可粉} 可可粉中，搅拌均匀。",
+            "加入 {牛奶} 冷牛奶，冷却至和手心温度相近。",
+            "筛入 {低筋面粉} 低筋面粉，加入蛋黄搅拌均匀。",
+            "烤箱预热至 150°C。",
+            "蛋清打发至硬性发泡，途中分 3 次加入 {细砂糖} 细砂糖。",
+            "将蛋白霜与蛋黄糊翻拌均匀。",
+            "倒入模具中，震两下排出大气泡。",
+            "150°C 中层烤 55 分钟。",
+            "取出震两下，倒扣放凉。",
+
+            "【巧克力奶油】",
+            "将 {奶油巧克力} 70% 巧克力切碎。",
+            "{甘纳许淡奶油} 淡奶油加热后倒入巧克力中，搅拌至融化顺滑。",
+            "{打发淡奶油} 淡奶油加入 {奶油细砂糖} 细砂糖，打发至 8 分。",
+            "将巧克力甘纳许加入打发奶油中，继续打发至适合抹面。",
+            "盛出 100g 奶油作为夹心。",
+            "剩下的奶油用来抹面和裱花。",
+
+            "【巧克力淋面】",
+            "蛋糕冷藏时制作巧克力淋面。",
+            "{淋面黑巧克力} 70% 巧克力和 {白巧克力} 白巧克力切碎，倒入 {淋面淡奶油} 淡奶油中。",
+            "微波炉加热 10 秒后搅拌一次。",
+            "重复加热和搅拌，直到巧克力完全融化。",
+            "降温至约 30°C 后淋在蛋糕表面。",
+            "约使用 50g 淋面，不需要全部用完。",
+            "放入冰箱冷藏定型。",
+          ],
+        },
+
+        "strawberry-chocolate-chiffon": {
+          title: "草莓巧克力戚风蛋糕",
+          name: "Strawberry chocolate chiffon cake",
+          image: "../images/strawberry-chocolate-chiffon.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "柔软的巧克力戚风搭配轻盈奶油、新鲜草莓和巧克力甘纳许，酸甜清爽，巧克力味浓郁。",
+
+          ingredients: [
+            { type: "heading", text: "巧克力戚风" },
+            { name: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "植物油", amount: 37, unit: "g" },
+            { name: "可可粉", amount: 15, unit: "g" },
+            { name: "牛奶", amount: 70, unit: "g" },
+            { name: "低筋面粉", amount: 55, unit: "g" },
+            { name: "戚风糖", displayName: "糖", amount: 55, unit: "g" },
+
+            { type: "heading", text: "奶油" },
+            { name: "淡奶油", amount: 400, unit: "g" },
+            { name: "奶油糖", displayName: "糖", amount: 40, unit: "g" },
+
+            { type: "heading", text: "巧克力淋面" },
+            {
+              name: "淋面巧克力",
+              displayName: "70% 巧克力",
+              amount: 40,
+              unit: "g",
+            },
+            {
+              name: "淋面淡奶油",
+              displayName: "淡奶油",
+              amount: 40,
+              unit: "g",
+            },
+          ],
+
+          steps: [
+            "【巧克力戚风】",
+            "中小火加热 {植物油} 植物油 15-20 秒，表面出现涟漪后关火。",
+            "将热油倒入 {可可粉} 可可粉中拌匀。",
+            "加入 {牛奶} 冷牛奶，冷却至和手心温度相近。",
+            "筛入 {低筋面粉} 低筋面粉。",
+            "加入蛋黄拌匀。",
+            "烤箱预热至 160°C。",
+            "蛋清打发至硬性发泡。",
+            "途中分 3 次加入 {戚风糖} 糖。",
+            "将蛋白霜与蛋黄糊翻拌均匀。",
+            "倒入模具中，震两下排出大气泡。",
+            "160°C 中层烤 45 分钟。",
+            "取出震两下，倒扣放凉。",
+
+            "【奶油】",
+            "{淡奶油} 淡奶油加入 {奶油糖} 糖，打发至 7 分。",
+            "盛出一半冷藏，留着抹面。",
+            "剩下的奶油继续打发至偏硬，用作夹心。",
+
+            "【组装】",
+            "蛋糕脱模后切成 3 片。",
+            "蛋糕片抹上奶油，夹入草莓片。",
+            "盖上下一片蛋糕，重复奶油和草莓夹层。",
+            "最后用预留的奶油抹面，放入冰箱冷藏。",
+
+            "【巧克力淋面】",
+            "蛋糕冷藏时制作巧克力甘纳许。",
+            "{淋面巧克力} 70% 巧克力切碎，倒入 {淋面淡奶油} 淡奶油中。",
+            "微波炉加热 10 秒后搅拌一次。",
+            "重复加热和搅拌，直到巧克力完全融化。",
+            "降温至约 29°C 后淋在蛋糕表面。",
+            "用新鲜草莓装饰，冷藏定型。",
+          ],
+        },
+
+        "matcha-rasp-chiffon": {
+          title: "抹茶树莓奶油戚风蛋糕",
+          name: "Matcha raspberry chiffon cake",
+          image: "../images/matcha-rasp-chiffon.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro: "抹茶戚风蛋糕配方来自天然气小姐<br>抹茶白巧奶油配方随便找的",
+
+          ingredients: [
+            { type: "heading", text: "抹茶戚风" },
+            { name: "戚风鸡蛋", displayName: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "植物油", amount: 30, unit: "g" },
+            { name: "戚风抹茶粉", displayName: "抹茶粉", amount: 6, unit: "g" },
+            { name: "50度水", displayName: "50°C 水", amount: 55, unit: "g" },
+            { name: "低筋面粉", amount: 40, unit: "g" },
+            { name: "玉米淀粉", amount: 4, unit: "g" },
+            {
+              name: "戚风细砂糖",
+              displayName: "细砂糖",
+              amount: 50,
+              unit: "g",
+            },
+
+            { type: "heading", text: "抹茶奶冻" },
+            {
+              name: "奶冻淡奶油",
+              displayName: "淡奶油",
+              amount: 75,
+              unit: "g",
+            },
+            { name: "奶冻牛奶", displayName: "牛奶", amount: 75, unit: "g" },
+            { name: "奶冻糖", displayName: "糖", amount: 15, unit: "g" },
+            { name: "奶冻抹茶粉", displayName: "抹茶粉", amount: 3, unit: "g" },
+            { name: "吉利丁片", amount: 4, unit: "g" },
+
+            { type: "heading", text: "抹茶白巧奶油" },
+            { name: "白巧克力", amount: 36, unit: "g" },
+            { name: "奶油抹茶粉", displayName: "抹茶粉", amount: 6, unit: "g" },
+            {
+              name: "抹茶奶油淡奶油",
+              displayName: "淡奶油",
+              amount: 250,
+              unit: "g",
+            },
+            {
+              name: "抹茶奶油细砂糖",
+              displayName: "细砂糖",
+              amount: 20,
+              unit: "g",
+            },
+
+            { type: "heading", text: "草莓奶油" },
+            {
+              name: "草莓奶油淡奶油",
+              displayName: "淡奶油",
+              amount: 100,
+              unit: "g",
+            },
+            { name: "草莓酱", amount: 40, unit: "g" },
+            {
+              name: "草莓奶油细砂糖",
+              displayName: "细砂糖",
+              amount: 5,
+              unit: "g",
+            },
+            { name: "树莓", amount: 125, unit: "g" },
+
+            { type: "heading", text: "原味奶油" },
+            {
+              name: "原味淡奶油",
+              displayName: "淡奶油",
+              amount: 100,
+              unit: "g",
+            },
+            {
+              name: "原味奶油细砂糖",
+              displayName: "细砂糖",
+              amount: 9,
+              unit: "g",
+            },
+          ],
+
+          steps: [
+            "【抹茶戚风】",
+            "{植物油} 植物油和 {戚风抹茶粉} 抹茶粉搅拌均匀。",
+            "倒入 {50度水} 50°C 热水，搅拌至看不到油脂。",
+            "筛入 {低筋面粉} 低筋面粉，加入蛋黄搅拌均匀。",
+            "烤箱预热至 150°C。",
+            "{戚风细砂糖} 细砂糖和 {玉米淀粉} 玉米淀粉混合均匀。",
+            "蛋清中挤入几滴柠檬汁，分三次加入糖粉混合物，打发至小直尖角。",
+            "取 1/3 蛋白霜与蛋黄糊翻拌均匀。",
+            "倒回剩下的蛋白霜中，继续翻拌均匀。",
+            "面糊倒入模具中，震两下排出大气泡。",
+            "150°C 烤 55 分钟。",
+            "出炉后震两下，倒扣至完全冷却。",
+            "脱模后切成 3 片。",
+
+            "【抹茶白巧奶油】",
+            "融化 {白巧克力} 白巧克力，筛入 {奶油抹茶粉} 抹茶粉，搅拌均匀。",
+            "从 {抹茶奶油淡奶油} 淡奶油中取 50g，加热至温热。",
+            "将温热奶油少量多次加入抹茶白巧酱中，搅拌均匀。",
+            "再与剩下的 200g 淡奶油和 {抹茶奶油细砂糖} 细砂糖混合。",
+            "冷藏隔夜后打发至 8 分，用于抹面和裱花。",
+
+            "【抹茶奶冻】",
+            "{吉利丁片} 吉利丁片泡软并挤干水分。",
+            "{奶冻抹茶粉} 抹茶粉过筛。",
+            "{奶冻牛奶} 牛奶加热至冒烟，少量多次加入抹茶粉中搅拌均匀。",
+            "加入 {奶冻淡奶油} 淡奶油和 {奶冻糖} 糖，加热至冒烟。",
+            "放入吉利丁片，搅拌至完全融化。",
+            "倒入模具中，放凉后冷藏定型。",
+
+            "【夹心奶油】",
+            "{草莓奶油淡奶油} 淡奶油、{草莓酱} 草莓酱和 {草莓奶油细砂糖} 细砂糖打发至 9 分。",
+            "{原味淡奶油} 淡奶油加入 {原味奶油细砂糖} 细砂糖，打发至 9 分。",
+
+            "【组装】",
+            "一片蛋糕上抹一层原味奶油，放上抹茶奶冻，再抹一层奶油。",
+            "放上另一片蛋糕，抹一层草莓奶油。",
+            "放入切半的 {树莓} 树莓，再用草莓奶油盖住树莓。",
+            "盖上最后一片蛋糕。",
+            "用抹茶白巧奶油抹面和裱花。",
+            "最后用树莓装饰。",
+            "冷藏隔夜，让味道更加融合。",
+          ],
+        },
+
+        "matcha-chiffon-cake": {
+          title: "抹茶奶油戚风蛋糕",
+          name: "Matcha chiffon cake",
+          image: "../images/matcha-chiffon.jpeg",
+          imagePosition: "center 55%",
+          imageZoom: 1,
+          intro: "戚风蛋糕6寸中空",
+
+          ingredients: [
+            { type: "heading", text: "抹茶戚风" },
+            { name: "鸡蛋", amount: 2, unit: "pc" },
+            { name: "植物油", amount: 25, unit: "g" },
+            { name: "戚风抹茶粉", displayName: "抹茶粉", amount: 3, unit: "g" },
+            { name: "牛奶", amount: 43, unit: "g" },
+            { name: "盐", amount: 1, unit: "g" },
+            { name: "低筋面粉", amount: 35, unit: "g" },
+            {
+              name: "戚风细砂糖",
+              displayName: "细砂糖",
+              amount: 30,
+              unit: "g",
+            },
+
+            { type: "heading", text: "抹茶奶油" },
+            { name: "淡奶油", amount: 300, unit: "g" },
+            { name: "奶油糖", displayName: "糖", amount: 30, unit: "g" },
+            { name: "奶油抹茶粉", displayName: "抹茶粉", amount: 2, unit: "g" },
+
+            { type: "heading", text: "装饰" },
+            {
+              name: "草莓",
+              amount: null,
+              unit: "适量",
+              scalable: false,
+            },
+            {
+              name: "芒果",
+              amount: null,
+              unit: "适量",
+              scalable: false,
+            },
+          ],
+
+          steps: [
+            "【抹茶戚风】",
+            "{植物油} 植物油和 {牛奶} 牛奶混合。",
+            "筛入 {戚风抹茶粉} 抹茶粉、{低筋面粉} 低筋面粉和 {盐} 盐，用蛋抽搅拌至无干粉。",
+            "加入蛋黄，搅拌成细腻的面糊。",
+            "烤箱预热至 150°C。",
+            "打发蛋白，分三次加入 {戚风细砂糖} 细砂糖。",
+            "打发至干性发泡。",
+            "取 1/3 蛋白霜加入蛋黄面糊，翻拌均匀。",
+            "倒回剩下的蛋白霜中，继续翻拌均匀。",
+            "倒入模具中，震两下排出大气泡。",
+            "150°C 烤约 40 分钟。",
+            "蛋糕出炉后马上倒扣。",
+            "完全冷却后脱模，切成两片。",
+
+            "【抹茶奶油】",
+            "{奶油抹茶粉} 抹茶粉与 {奶油糖} 糖混合并过筛。",
+            "{淡奶油} 淡奶油加入抹茶糖粉，打发至 8 分。",
+
+            "【组装】",
+            "一片蛋糕上挤一层抹茶奶油。",
+            "放上草莓或芒果。",
+            "再挤一层奶油盖住水果。",
+            "放上另一片蛋糕。",
+            "表面抹上一层薄薄的抹茶奶油。",
+            "放上草莓，再挤上奶油装饰。",
+            "冷藏 1 小时后享用。",
+          ],
+        },
+
+        "mango-chiffon-cake": {
+          title: "芒果奶油戚风蛋糕",
+          name: "Mango chiffon cake",
+          image: "../images/mango-chiffon.jpeg",
+          imagePosition: "center 50%",
+          imageZoom: 1,
+          intro: "戚风蛋糕6寸中空",
+
+          ingredients: [
+            { type: "heading", text: "香草戚风" },
+            { name: "鸡蛋", amount: 2, unit: "个" },
+            { name: "植物油", amount: 25, unit: "g" },
+            { name: "牛奶", amount: 35, unit: "g" },
+            { name: "盐", amount: 1, unit: "g" },
+            { name: "低筋面粉", amount: 43, unit: "g" },
+            { name: "香草膏", amount: 0.25, unit: "小勺" },
+            {
+              name: "戚风细砂糖",
+              displayName: "细砂糖",
+              amount: 40,
+              unit: "g",
+            },
+
+            { type: "heading", text: "奶油和夹心" },
+            { name: "淡奶油", amount: 300, unit: "g" },
+            {
+              name: "奶油细砂糖",
+              displayName: "细砂糖",
+              amount: 25,
+              unit: "g",
+            },
+            { name: "芒果", amount: 1, unit: "个" },
+          ],
+
+          steps: [
+            "【香草戚风】",
+            "{植物油} 植物油和 {牛奶} 牛奶混合均匀。",
+            "筛入 {低筋面粉} 低筋面粉和 {盐} 盐，搅拌至无干粉。",
+            "加入蛋黄和 {香草膏} 香草膏，搅拌成细腻的面糊。",
+            "烤箱预热至 160°C。",
+            "蛋白分三次加入 {戚风细砂糖} 细砂糖，打发至干性发泡。",
+            "取 1/3 蛋白霜加入蛋黄面糊中，翻拌均匀。",
+            "倒回剩下的蛋白霜中，继续翻拌均匀。",
+            "面糊倒入模具中，震两下排出大气泡。",
+            "160°C 烤 35 分钟。",
+            "出炉后倒扣，完全冷却后脱模。",
+
+            "【组装】",
+            "蛋糕切成两片。",
+            "{芒果} 芒果切成小丁。",
+            "{淡奶油} 淡奶油加入 {奶油细砂糖} 细砂糖，打发至 8 分。",
+            "在第一片蛋糕上抹一层奶油。",
+            "放上芒果丁。",
+            "再用奶油盖住芒果。",
+            "盖上另一片蛋糕。",
+            "用剩下的奶油抹面。",
+            "最后用芒果丁装饰蛋糕表面。",
+          ],
+        },
+        /* other cakes... */
+
+        "carrot-cake": {
+          title: "胡萝卜蛋糕",
+          name: "Carrot cake",
+          image: "../images/carrot-cake.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "柠檬皮屑是奶酪霜的灵魂<br>但是加了柠檬汁后变得很稀。。。下次要减半",
+
+          ingredients: [
+            { type: "heading", text: "胡萝卜蛋糕" },
+            { name: "鸡蛋", amount: 100, unit: "g" },
+            {
+              name: "蛋糕细砂糖",
+              displayName: "细砂糖",
+              amount: 105,
+              unit: "g",
+            },
+            { name: "香草精", amount: 2, unit: "g" },
+            { name: "蜂蜜", amount: 30, unit: "g" },
+            { name: "黄油", amount: 60, unit: "g" },
+            { name: "植物油", amount: 50, unit: "g" },
+            { name: "低筋面粉", amount: 150, unit: "g" },
+            { name: "肉桂粉", amount: 2, unit: "g" },
+            { name: "泡打粉", amount: 4, unit: "g" },
+            { name: "小苏打", amount: 1, unit: "g" },
+            { name: "胡萝卜丝", amount: 150, unit: "g" },
+            { name: "烤核桃或碧根果", amount: 20, unit: "g" },
+            { name: "杏仁粉", amount: 50, unit: "g" },
+
+            { type: "heading", text: "奶油奶酪霜" },
+            { name: "奶油奶酪", amount: 220, unit: "g" },
+            { name: "淡奶油", amount: 130, unit: "g" },
+            {
+              name: "奶酪霜细砂糖",
+              displayName: "细砂糖",
+              amount: 40,
+              unit: "g",
+            },
+            { name: "柠檬汁", amount: 4, unit: "g" },
+            { name: "柠檬皮屑", amount: 1, unit: "个" },
+          ],
+
+          steps: [
+            "模具底部和四周垫上油纸。",
+            "中火融化 {黄油} 黄油，颜色变深时离火并过滤。",
+            "将 {低筋面粉} 低筋面粉、{肉桂粉} 肉桂粉、{泡打粉} 泡打粉、{小苏打} 小苏打和 {杏仁粉} 杏仁粉混合均匀。",
+            "{鸡蛋} 鸡蛋加入 {蛋糕细砂糖} 细砂糖，高速打发 5 分钟。",
+            "倒入 {香草精} 香草精和 {蜂蜜} 蜂蜜，低速打发 1 分钟，同时缓慢倒入黄油和 {植物油} 植物油。",
+            "筛入混合干粉，翻拌至无干粉。",
+            "拌入 {胡萝卜丝} 胡萝卜丝和 {烤核桃或碧根果} 烤核桃或碧根果，不要过度搅拌。",
+            "倒入模具中。",
+            "170°C 烤 55-60 分钟。",
+            "倒扣脱模并撕掉油纸。",
+            "【奶油奶酪霜】",
+            "{奶油奶酪} 奶油奶酪软化，低速搅拌 1 分钟。",
+            "{淡奶油} 淡奶油加入 {奶酪霜细砂糖} 细砂糖，打发至 8 分。",
+            "用蛋抽将奶油奶酪和打发奶油搅拌均匀。",
+            "加入 {柠檬汁} 柠檬汁和 {柠檬皮屑} 柠檬皮屑。",
+            "蛋糕切片后使用奶油奶酪霜夹心和抹面。",
+          ],
+        },
+
+        "matcha-crepe-cake": {
+          title: "抹茶千层蛋糕",
+          name: "Matcha crepe cake",
+          image: "../images/matcha-crepe-cake.jpeg",
+          imagePosition: "center 55%",
+          imageZoom: 1,
+          intro: "抹茶白巧奶油",
+
+          ingredients: [
+            { type: "heading", text: "千层面糊" },
+            { name: "全脂牛奶", amount: 420, unit: "g" },
+            { name: "面糊糖", displayName: "糖", amount: 50, unit: "g" },
+            { name: "无盐黄油", amount: 15, unit: "g" },
+            { name: "鸡蛋", amount: 110, unit: "g" },
+            { name: "低粉", amount: 80, unit: "g" },
+            { name: "面糊抹茶粉", displayName: "抹茶粉", amount: 6, unit: "g" },
+
+            { type: "heading", text: "抹茶白巧奶油" },
+            { name: "奶油抹茶粉", displayName: "抹茶粉", amount: 6, unit: "g" },
+            { name: "白巧克力", amount: 90, unit: "g" },
+            { name: "奶油", amount: 540, unit: "g" },
+          ],
+
+          steps: [
+            "【抹茶白巧奶油】",
+            "{白巧克力} 白巧克力切碎，放入打蛋盆中隔热水融化。",
+            "筛入 {奶油抹茶粉} 抹茶粉。",
+            "从 {奶油} 奶油中取两勺冰凉奶油，与抹茶白巧搅匀后离开热水。",
+            "剩下的奶油分两次倒入白巧中。",
+            "混合均匀后冷藏备用。",
+            "【抹茶面糊】",
+            "{无盐黄油} 无盐黄油切小块，隔热水融化。",
+            "{面糊抹茶粉} 抹茶粉倒入液体黄油中搅匀。",
+            "一半 {全脂牛奶} 牛奶与 {面糊糖} 糖微波加热至牛奶冒烟，搅拌至糖融化。",
+            "热牛奶少量多次加入抹茶黄油中。",
+            "加入剩下的冷牛奶。",
+            "加入 {鸡蛋} 鸡蛋液。",
+            "将 {低粉} 低粉过筛到牛奶中。",
+            "面糊过筛 2-3 遍。",
+            "【摊饼】",
+            "准备一块湿布，平底锅过热时放在湿布上降温。",
+            "小火预热锅子，手接近锅底能感受到热度即可。",
+            "倒入一大勺面糊，晃动平底锅让面糊均匀铺开。",
+            "饼皮冒大泡后，用刮刀沿边缘划一圈并取出冷却。",
+            "每次煎饼前都搅拌一下面糊，避免产生沉淀。",
+            "大约可以煎出 27 张饼皮。",
+            "以 6 寸模具底部为模板，切掉多余饼皮。",
+            "【组装】",
+            "抹茶白巧奶油打发至 7-8 分。",
+            "每层使用约 25-30g 奶油抹平。",
+            "盖上下一张饼皮，重复奶油和饼皮的步骤。",
+            "其中一至两层可以放入蜜红豆或草莓。",
+            "最后在蛋糕侧面抹少量奶油，让外观更整洁。",
+            "用平整物件轻压蛋糕表面。",
+            "冷藏隔夜。",
+            "食用前在表面筛一层抹茶粉并裱花。",
+          ],
+        },
+
+        "mocha-cake-roll": {
+          title: "摩卡蛋糕卷",
+          name: "Mocha cake roll",
+          image: "../images/mocha-cake-roll.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro: "爱烘焙的阿猪的咸摩卡蛋糕卷。",
+
+          ingredients: [
+            { type: "heading", text: "摩卡蛋糕片" },
+            { name: "鸡蛋", amount: 3, unit: "pc" },
+            { name: "植物油", amount: 41, unit: "g" },
+            { name: "可可粉", amount: 7.5, unit: "g" },
+            { name: "热水", amount: 41, unit: "g" },
+            { name: "速溶咖啡", amount: 1.4, unit: "g" },
+            { name: "低筋面粉", amount: 45, unit: "g" },
+            { name: "蛋糕糖", displayName: "糖", amount: 48, unit: "g" },
+
+            { type: "heading", text: "摩卡奶油" },
+            { name: "淡奶油", amount: 150, unit: "g" },
+            { name: "奶油糖", displayName: "糖", amount: 15, unit: "g" },
+            { name: "盐", amount: 1, unit: "g" },
+            { name: "奶油可可粉", displayName: "可可粉", amount: 2, unit: "g" },
+            { name: "咖啡粉", amount: 1.4, unit: "g" },
+          ],
+
+          steps: [
+            "【摩卡蛋糕片】",
+            "烤盘垫上油纸。",
+            "用 {热水} 热水冲开 {可可粉} 可可粉和适量速溶咖啡，再加入冷水。",
+            "倒入 {植物油} 植物油并加入香草精。",
+            "筛入 {低筋面粉} 低筋面粉，搅拌均匀。",
+            "蛋黄加入面糊中，搅拌至细腻。",
+            "烤箱预热至 150°C。",
+            "蛋白中加入几滴柠檬汁，分次加入 {蛋糕糖} 糖，打至湿性发泡。",
+            "取一大勺蛋白霜加入蛋黄糊中，用刮刀翻拌均匀。",
+            "倒回剩下的蛋白霜中，继续翻拌均匀。",
+            "面糊倒入烤盘中，用刮刀刮平。",
+            "150°C 烤 25 分钟。",
+            "【摩卡奶油】",
+            "从 {淡奶油} 淡奶油中取 50g，与 {咖啡粉} 咖啡粉搅拌并加热至融化。",
+            "加入剩余淡奶油、{奶油可可粉} 可可粉、{奶油糖} 糖和 {盐} 盐。",
+            "低速打发至奶油纹路清晰，并且能够保持形状。",
+            "【组装】",
+            "蛋糕片抹上摩卡奶油。",
+            "提起烘焙纸，轻轻压住蛋糕片。",
+            "借助擀面杖将蛋糕往前卷。",
+            "卷完后将烘焙纸固定在蛋糕卷前方，拉紧蛋糕卷。",
+            "送入冰箱冷藏半小时定型后切开。",
+          ],
+        },
+
+        "banana-cake": {
+          title: "香蕉蛋糕",
+          name: "Banana cake",
+          image: "../images/banana-bread.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "原方来自<a href='https://www.youtube.com/watch?v=NCFrZPukelk&pp=ygUUYmFuYW5hIGNha2UgaGlkYW1hcmk%3D' target='_blank' style='color: #6b4f3d; text-decoration: underline;'>Hida Mari</a>。",
+
+          ingredients: [
+            { name: "熟香蕉泥", amount: 200, unit: "g" },
+            { name: "细砂糖", amount: 45, unit: "g" },
+            { name: "无盐黄油", amount: 70, unit: "g" },
+            { name: "鸡蛋", amount: 100, unit: "g" },
+            { name: "低粉", amount: 160, unit: "g" },
+            { name: "泡打粉", amount: 6, unit: "g" },
+            { name: "装饰香蕉", displayName: "熟香蕉", amount: 1, unit: "pc" },
+          ],
+
+          steps: [
+            "模具中垫入油纸。",
+            "烤箱预热至 180°C。",
+            "将 {熟香蕉泥} 熟香蕉压成泥。",
+            "拌入 {细砂糖} 细砂糖。",
+            "加入融化的 {无盐黄油} 无盐黄油。",
+            "加入 {鸡蛋} 鸡蛋，搅拌均匀。",
+            "筛入 {低粉} 低粉和 {泡打粉} 泡打粉。",
+            "用刮刀翻拌至无干粉，不要过度搅拌。",
+            "面糊倒入模具中。",
+            "将 {装饰香蕉} 熟香蕉对半切开，放在面糊表面。",
+            "180°C 烤 45 分钟。",
+            "取出后放凉。",
+          ],
+        },
+
+        "ube-cake-roll": {
+          title: "Ube蛋糕卷",
+          name: "Ube cake roll",
+          image: "../images/ube-cake-roll.jpeg",
+          imagePosition: "center center",
+          imageZoom: 1,
+          intro:
+            "紫薯风味的柔软蛋糕卷搭配 Ube 奶油和椰奶冻，颜色漂亮，带有温和的椰香与紫薯香气。",
+
+          ingredients: [
+            { type: "heading", text: "椰奶冻" },
+            { name: "奶冻牛奶", displayName: "牛奶", amount: 100, unit: "g" },
+            { name: "椰奶", amount: 75, unit: "g" },
+            {
+              name: "奶冻淡奶油",
+              displayName: "淡奶油",
+              amount: 50,
+              unit: "g",
+            },
+            {
+              name: "奶冻细砂糖",
+              displayName: "细砂糖",
+              amount: 22,
+              unit: "g",
+            },
+            { name: "吉利丁片", amount: 5, unit: "g" },
+
+            { type: "heading", text: "Ube蛋糕片" },
+            { name: "蛋黄", amount: 3, unit: "pc" },
+            { name: "蛋糕牛奶", displayName: "牛奶", amount: 30, unit: "g" },
+            { name: "植物油", amount: 30, unit: "g" },
+            {
+              name: "蛋糕Ube香精",
+              displayName: "Ube香精",
+              amount: 2,
+              unit: "tsp",
+            },
+            { name: "低筋面粉", amount: 39, unit: "g" },
+            { name: "蛋清", amount: 3, unit: "pc" },
+            {
+              name: "蛋糕细砂糖",
+              displayName: "细砂糖",
+              amount: 45,
+              unit: "g",
+            },
+
+            { type: "heading", text: "Ube奶油" },
+            {
+              name: "奶油淡奶油",
+              displayName: "淡奶油",
+              amount: 180,
+              unit: "g",
+            },
+            {
+              name: "奶油细砂糖",
+              displayName: "细砂糖",
+              amount: 18,
+              unit: "g",
+            },
+            {
+              name: "奶油Ube香精",
+              displayName: "Ube香精",
+              amount: 0.1,
+              unit: "g",
+            },
+          ],
+
+          steps: [
+            "【椰奶冻】",
+            "{吉利丁片} 吉利丁片用冰水泡软。",
+            "{奶冻牛奶} 牛奶、{椰奶} 椰奶、{奶冻淡奶油} 淡奶油和 {奶冻细砂糖} 细砂糖倒入奶锅中，加热至糖融化。",
+            "液体降温至约 50°C 后放入吉利丁片，搅拌均匀。",
+            "倒入圆形容器中，冷藏约 3 小时至定型。",
+            "【Ube蛋糕片】",
+            "{植物油} 植物油、{蛋糕牛奶} 牛奶和 {蛋糕Ube香精} Ube香精混合均匀。",
+            "筛入 {低筋面粉} 低筋面粉，搅拌均匀。",
+            "加入 {蛋黄} 蛋黄，搅拌成细腻面糊。",
+            "{蛋清} 蛋清分次加入 {蛋糕细砂糖} 细砂糖，打发至湿性发泡。",
+            "蛋白霜与蛋黄糊翻拌均匀。",
+            "倒入铺好油纸的烤盘中。",
+            "150°C 烤约 25 分钟。",
+            "取出后放凉。",
+            "【Ube奶油】",
+            "{奶油淡奶油} 淡奶油加入 {奶油细砂糖} 细砂糖和 {奶油Ube香精} Ube香精。",
+            "打发至 8 分。",
+            "【组装】",
+            "蛋糕片抹上 Ube 奶油。",
+            "在中间放入切好的椰奶冻。",
+            "将蛋糕片卷起并拉紧。",
+            "冷藏至少半小时定型后切开。",
+          ],
+        },
+      };
+    </script>
+
+    <script src="scripts/bread-recipes.js"></script>
+    <script src="scripts/cookie-recipes.js"></script>
+    <script src="scripts/small-desserts.js"></script>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const recipeName = params.get("recipe");
+      const currentRecipe = recipes[recipeName];
+
+      const scaleInput = document.getElementById("scale");
+      const ingredientsList = document.getElementById("ingredientsList");
+      const stepsList = document.getElementById("stepsList");
+
+      function formatAmount(amount) {
+        return Number.isInteger(amount) ? amount : amount.toFixed(1);
+      }
+
+      function getScaledIngredient(name) {
+        const scale = Number(scaleInput.value);
+        const ingredient = currentRecipe.ingredients.find(
+          (item) => item.name === name,
+        );
+
+        if (!ingredient) {
+          return name;
+        }
+
+        return `${formatAmount(ingredient.amount * scale)}${ingredient.unit}`;
+      }
+
+      function renderRecipe() {
+        if (!currentRecipe) {
+          document.getElementById("recipeTitle").textContent = "找不到这个食谱";
+          return;
+        }
+
+        document.title = `${currentRecipe.title} | Chlotreats`;
+        document.getElementById("recipeTitle").textContent =
+          currentRecipe.title;
+        document.getElementById("recipeName").textContent = currentRecipe.name;
+        document.getElementById("recipeImage").src = currentRecipe.image;
+        document.getElementById("recipeImage").alt = currentRecipe.title;
+        document.getElementById("recipeImage").style.objectPosition =
+          currentRecipe.imagePosition || "center center";
+        document.getElementById("recipeIntro").innerHTML = currentRecipe.intro;
+
+        renderAmounts();
+      }
+
+      function renderAmounts() {
+        const scale = Number(scaleInput.value);
+
+        ingredientsList.innerHTML = "";
+
+        currentRecipe.ingredients.forEach((ingredient) => {
+          const li = document.createElement("li");
+
+          if (ingredient.type === "heading") {
+            li.className = "ingredient-heading";
+            li.textContent = ingredient.text;
+          } else {
+            const displayName = ingredient.displayName || ingredient.name;
+
+            li.innerHTML = `
+                    ${displayName}
+                    <span class="amount">${formatAmount(ingredient.amount * scale)}</span>${ingredient.unit}
+                  `;
+          }
+
+          ingredientsList.appendChild(li);
+        });
+
+        stepsList.innerHTML = "";
+
+        currentRecipe.steps.forEach((step) => {
+          const li = document.createElement("li");
+
+          li.innerHTML = step.replace(/\{(.+?)\}/g, function (match, name) {
+            return `<span class="amount">${getScaledIngredient(name)}</span>`;
+          });
+
+          stepsList.appendChild(li);
+        });
+      }
+
+      renderRecipe();
+      scaleInput.addEventListener("input", renderAmounts);
+
+      let wakeLock = null;
+      const wakeLockToggle = document.getElementById("wakeLockToggle");
+
+      async function requestWakeLock() {
+        if ("wakeLock" in navigator) {
+          wakeLock = await navigator.wakeLock.request("screen");
+        } else {
+          alert("这个浏览器不支持防止屏幕变暗功能。");
+          wakeLockToggle.checked = false;
+        }
+      }
+
+      async function releaseWakeLock() {
+        if (wakeLock !== null) {
+          await wakeLock.release();
+          wakeLock = null;
+        }
+      }
+
+      wakeLockToggle.addEventListener("change", async () => {
+        if (wakeLockToggle.checked) {
+          await requestWakeLock();
+        } else {
+          await releaseWakeLock();
+        }
+      });
+      renderRecipe();
+    </script>
+    <script src="../scripts/site-search.js"></script>
+  </body>
+  <footer>
+    <p style="text-align: center; padding: 20px; color: #999">
+      &copy; 2026 Chlotreats. All rights reserved.
+    </p>
+  </footer>
+</html>
