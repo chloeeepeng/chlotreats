@@ -123,7 +123,7 @@
   container.appendChild(results);
 
   const searchableSelector =
-    ".cake-card, .category-card, .recipe-card, #recipeList a";
+    ".cake-card, .category-card, .recipe-card, .quick-card, #recipeList a";
   const fallbackSelector = ".nav-links a";
   const links = Array.from(document.querySelectorAll(searchableSelector));
   const searchableLinks = links.length
@@ -131,7 +131,9 @@
     : Array.from(document.querySelectorAll(fallbackSelector));
 
   const filterTargets = Array.from(
-    document.querySelectorAll(".cake-card, .category-card, .recipe-card, #recipeList li"),
+    document.querySelectorAll(
+      ".cake-card, .category-card, .recipe-card, .quick-card, #recipeList li",
+    ),
   );
 
   const searchItems = searchableLinks.map((link) => {

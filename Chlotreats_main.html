@@ -66,20 +66,10 @@
         z-index: 20;
       }
 
-      .logo {
-        display: block;
-        line-height: 0;
-        transform: translate(-4px, -5px);
-      }
-
-      .logo img {
-        width: auto;
-        height: 60px;
-      }
-
       .search-container {
         width: min(260px, 100%);
         position: relative;
+        margin-top: 3px;
       }
 
       .search-container input {
@@ -117,6 +107,7 @@
         align-items: center;
         gap: clamp(22px, 3vw, 48px);
         list-style: none;
+        margin-top: 4px;
       }
 
       .nav-links > li {
@@ -135,6 +126,7 @@
         font-size: 15px;
         letter-spacing: 0.08em;
         white-space: nowrap;
+        margin-top: 10px;
       }
 
       .nav-links > li > a::after {
@@ -453,66 +445,59 @@
         transition: transform 0.5s ease;
       }
 
-      .notes-section {
+      .quick-section {
         background: #eee9dd;
       }
 
-      .notes-layout {
+      .quick-grid {
         display: grid;
-        grid-template-columns: 0.8fr 1.2fr;
-        gap: clamp(50px, 9vw, 140px);
-        align-items: start;
-      }
-
-      .notes-intro {
-        position: sticky;
-        top: 30px;
-      }
-
-      .notes-intro h2 {
-        margin: 12px 0 22px;
-        font-family: var(--serif);
-        font-size: clamp(44px, 6vw, 76px);
-        font-weight: 400;
-        line-height: 0.95;
-      }
-
-      .notes-intro p {
-        max-width: 390px;
-        color: var(--muted);
-        line-height: 1.9;
-      }
-
-      .notes-list {
-        border-top: 1px solid #cfc4b7;
-      }
-
-      .note {
-        padding: 32px 0;
-        display: grid;
-        grid-template-columns: 74px 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 24px;
-        border-bottom: 1px solid #cfc4b7;
       }
 
-      .note time {
-        color: var(--matcha-dark);
-        font-family: var(--serif);
-        font-size: 13px;
-        line-height: 1.5;
+      .quick-card {
+        min-height: 450px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--paper);
+        border: 1px solid #cfc4b7;
+        text-decoration: none;
       }
 
-      .note h3 {
-        margin-bottom: 10px;
+      .quick-card-image {
+        height: 330px;
+        overflow: hidden;
+      }
+
+      .quick-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+
+      .quick-card:hover img {
+        transform: scale(1.04);
+      }
+
+      .quick-card-copy {
+        padding: 24px;
+      }
+
+      .quick-card h3 {
+        margin: 8px 0 6px;
         font-family: var(--serif);
-        font-size: 25px;
+        font-size: 28px;
         font-weight: 400;
       }
 
-      .note p {
+      .quick-card p {
         color: var(--muted);
         font-size: 14px;
-        line-height: 1.8;
+        font-family: var(--serif);
+        font-style: italic;
       }
 
       .seasonal {
@@ -778,13 +763,16 @@
           min-height: 280px;
         }
 
-        .notes-layout,
         .seasonal-inner {
           grid-template-columns: 1fr;
         }
 
-        .notes-intro {
-          position: static;
+        .quick-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .quick-card:first-child {
+          grid-column: 1 / -1;
         }
 
         .seasonal-collage {
@@ -799,14 +787,6 @@
           display: flex;
           flex-direction: column;
           gap: 12px;
-        }
-
-        .logo img {
-          height: 58px;
-        }
-
-        .logo {
-          transform: none;
         }
 
         .search-container {
@@ -903,9 +883,16 @@
           border-bottom: 0;
         }
 
-        .note {
-          grid-template-columns: 58px 1fr;
-          gap: 15px;
+        .quick-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-card:first-child {
+          grid-column: auto;
+        }
+
+        .quick-card-image {
+          height: 82vw;
         }
 
         .seasonal {
@@ -936,6 +923,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="styles/site-header.css" />
   </head>
 
   <body>
@@ -986,7 +974,7 @@
         </div>
         <div class="hero-copy">
           <span class="eyebrow">Seasonal bake · 初冬手记</span>
-          <h1>慢慢烤，<span>好好生活。</span></h1>
+          <h1>芋泥面包<span>Taro buns</span></h1>
           <p>
             这周的厨房是紫薯、芋泥和刚出炉的面包香。把喜欢的配方认真记下来，也把每一次微小的进步留在这里。
           </p>
@@ -1091,44 +1079,62 @@
         </div>
       </section>
 
-      <section class="section notes-section">
-        <div class="section-inner notes-layout">
-          <div class="notes-intro">
-            <span class="eyebrow">From the notebook</span>
-            <h2>烘焙小记</h2>
-            <p>
-              不只是克数和温度，也记录面团的状态、烤箱里的变化，还有下一次想做得更好的地方。
-            </p>
+      <section class="section quick-section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Quick &amp; easy</span>
+              <h2>简单快手</h2>
+            </div>
+            <p>步骤不复杂，适合想吃甜点又不想准备太久的日子。</p>
           </div>
 
-          <div class="notes-list">
-            <article class="note">
-              <time datetime="2026-06-08">08<br />JUN</time>
-              <div>
-                <h3>戚风蛋糕的蛋白霜</h3>
-                <p>
-                  打到小弯钩就先停下来。细腻、有光泽，比追求过硬的尖角更容易拌出轻盈的面糊。
-                </p>
+          <div class="quick-grid">
+            <a
+              class="quick-card"
+              href="芝士蛋糕/recipe.html?recipe=banana-cake"
+            >
+              <div class="quick-card-image">
+                <img src="images/banana-bread.jpeg" alt="香蕉蛋糕" />
               </div>
-            </article>
-            <article class="note">
-              <time datetime="2026-05-26">26<br />MAY</time>
-              <div>
-                <h3>让面包保持柔软</h3>
-                <p>
-                  出炉后散去热气便及时密封。汤种和中种都能延缓老化，第二天回烤几分钟又会很香。
-                </p>
+              <div class="quick-card-copy">
+                <span class="eyebrow">One-bowl bake</span>
+                <h3>香蕉蛋糕</h3>
+                <p>Banana Cake</p>
               </div>
-            </article>
-            <article class="note">
-              <time datetime="2026-05-12">12<br />MAY</time>
-              <div>
-                <h3>抹茶保存备忘</h3>
-                <p>
-                  避光、密封、冷藏，开封后尽快用完。拌入面糊前先过筛，颜色和香气都会更干净。
-                </p>
+            </a>
+
+            <a
+              class="quick-card"
+              href="芝士蛋糕/recipe.html?recipe=almond-cookies"
+            >
+              <div class="quick-card-image">
+                <img src="images/almond-cookies.jpeg" alt="杏仁酥" />
               </div>
-            </article>
+              <div class="quick-card-copy">
+                <span class="eyebrow">Crisp &amp; nutty</span>
+                <h3>杏仁酥</h3>
+                <p>Almond Cookies</p>
+              </div>
+            </a>
+
+            <a
+              class="quick-card"
+              href="芝士蛋糕/recipe.html?recipe=chocolate-madeleines"
+            >
+              <div class="quick-card-image">
+                <img
+                  src="images/choco-madeleines.jpeg"
+                  alt="巧克力玛德琳"
+                  style="object-position: center 65%"
+                />
+              </div>
+              <div class="quick-card-copy">
+                <span class="eyebrow">Afternoon treat</span>
+                <h3>巧克力玛德琳</h3>
+                <p>Chocolate Madeleines</p>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -1149,7 +1155,11 @@
           </div>
           <div class="seasonal-collage">
             <img src="images/matcha-chiffon.jpeg" alt="抹茶戚风蛋糕" />
-            <img src="images/matcha-madeleines.jpeg" alt="抹茶玛德琳" />
+            <img
+              src="images/matcha-madeleines.jpeg"
+              alt="抹茶玛德琳"
+              style="object-position: center 50%"
+            />
           </div>
         </div>
       </section>
