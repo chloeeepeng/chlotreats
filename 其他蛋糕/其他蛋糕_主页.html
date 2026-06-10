@@ -177,6 +177,8 @@
       }
     </style>
     <link rel="stylesheet" href="../styles/site-header.css" />
+    <link rel="stylesheet" href="../styles/category-pages.css" />
+    <link rel="stylesheet" href="../styles/site-footer.css" />
   </head>
 
   <body>
@@ -195,10 +197,10 @@
             <a href="../蛋糕/全部蛋糕_主页.html">蛋糕</a>
 
             <ul class="dropdown-menu">
-              <li><a href="/芝士蛋糕/芝士蛋糕_主页.html">芝士蛋糕</a></li>
-              <li><a href="/免烤蛋糕/免烤蛋糕_主页.html">免烤蛋糕</a></li>
-              <li><a href="/戚风蛋糕/戚风蛋糕_主页.html">戚风蛋糕</a></li>
-              <li><a href="/其他蛋糕/其他蛋糕_主页.html">其他蛋糕</a></li>
+              <li><a href="../芝士蛋糕/芝士蛋糕_主页.html">芝士蛋糕</a></li>
+              <li><a href="../免烤蛋糕/免烤蛋糕_主页.html">免烤蛋糕</a></li>
+              <li><a href="../戚风蛋糕/戚风蛋糕_主页.html">戚风蛋糕</a></li>
+              <li><a href="../其他蛋糕/其他蛋糕_主页.html">其他蛋糕</a></li>
             </ul>
           </li>
 
@@ -206,73 +208,106 @@
             <a href="../面包/全部面包_主页.html">面包</a>
 
             <ul class="dropdown-menu">
-              <li><a href="/面包/波兰种_主页.html">波兰种</a></li>
-              <li><a href="/面包/汤种_主页.html">汤种</a></li>
-              <li><a href="/面包/中种_主页.html">中种</a></li>
-              <li><a href="/面包/其他_主页.html">其他</a></li>
+              <li><a href="../面包/波兰种_主页.html">波兰种</a></li>
+              <li><a href="../面包/汤种_主页.html">汤种</a></li>
+              <li><a href="../面包/中种_主页.html">中种</a></li>
+              <li><a href="../面包/其他_主页.html">其他</a></li>
             </ul>
           </li>
 
-          <li><a href="/曲奇/曲奇_主页.html">曲奇</a></li>
-          <li><a href="/小甜点/小甜点_主页.html">小甜点</a></li>
+          <li><a href="../曲奇/曲奇_主页.html">曲奇</a></li>
+          <li><a href="../小甜点/小甜点_主页.html">小甜点</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
       <section class="page-title">
-        <h1>其他蛋糕</h1>
-        <p>Other Cakes</p>
-      </section>  
-      
-        <section class="cake-grid">
-          <a
-            href="../芝士蛋糕/recipe.html?recipe=carrot-cake"
-            class="cake-card"
-          >
-            <img src="../images/carrot-cake.jpeg" alt="胡萝卜蛋糕" />
+        <div>
+          <span class="eyebrow">Everyday favourites</span>
+          <h1>其他蛋糕</h1>
+        </div>
+        <div class="page-intro">
+          <p>蛋糕卷、香蕉蛋糕与胡萝卜蛋糕，适合日常烘焙和轻松分享。</p>
+          <span class="recipe-count">4 recipes · 持续更新</span>
+        </div>
+      </section>
+
+      <ul class="category-filters" aria-label="蛋糕分类">
+        <li><a href="../蛋糕/全部蛋糕_主页.html">全部</a></li>
+        <li><a href="../芝士蛋糕/芝士蛋糕_主页.html">芝士蛋糕</a></li>
+        <li><a href="../免烤蛋糕/免烤蛋糕_主页.html">免烤蛋糕</a></li>
+        <li><a href="../戚风蛋糕/戚风蛋糕_主页.html">戚风蛋糕</a></li>
+        <li><a class="active" href="其他蛋糕_主页.html">其他蛋糕</a></li>
+      </ul>
+
+      <section class="featured-wrap">
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=carrot-cake"
+          class="featured-cake"
+        >
+          <div class="featured-image">
+            <img src="../images/carrot-cake-2.png" alt="胡萝卜蛋糕" />
+          </div>
+          <div class="featured-copy">
+            <span class="eyebrow">Featured recipe</span>
             <h2>胡萝卜蛋糕</h2>
             <p>Carrot Cake</p>
-          </a>
+            <span class="featured-link">查看配方 &nbsp;→</span>
+          </div>
+        </a>
+      </section>
 
-          <a
-            href="../芝士蛋糕/recipe.html?recipe=mocha-cake-roll"
-            class="cake-card"
-          >
-            <img src="../images/mocha-cake-roll.jpeg" alt="摩卡蛋糕卷" />
-            <h2>摩卡蛋糕卷</h2>
-            <p>Mocha Cake Roll</p>
-          </a>
+      <div class="grid-heading">
+        <h2>所有配方</h2>
+        <p>适合日常分享的蛋糕</p>
+      </div>
 
-          <a
-            href="../芝士蛋糕/recipe.html?recipe=banana-cake"
-            class="cake-card"
-          >
-            <img src="../images/banana-bread.jpeg" alt="香蕉蛋糕" />
-            <h2>香蕉蛋糕</h2>
-            <p>Banana Bread</p>
-          </a>
+      <section class="cake-grid">
+        <a href="../芝士蛋糕/recipe.html?recipe=carrot-cake" class="cake-card">
+          <img src="../images/carrot-cake.jpeg" alt="胡萝卜蛋糕" />
+          <h2>胡萝卜蛋糕</h2>
+          <p>Carrot Cake</p>
+        </a>
 
-          <a
-            href="../芝士蛋糕/recipe.html?recipe=ube-cake-roll"
-            class="cake-card"
-          >
-            <img
-              src="../images/ube-cake-roll.jpeg"
-              alt="Ube蛋糕卷"
-              style="object-position: center 60%"
-            />
-            <h2>Ube蛋糕卷</h2>
-            <p>Ube Cake Roll</p>
-          </a>
-        </section>
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=mocha-cake-roll"
+          class="cake-card"
+        >
+          <img src="../images/mocha-cake-roll.jpeg" alt="摩卡蛋糕卷" />
+          <h2>摩卡蛋糕卷</h2>
+          <p>Mocha Cake Roll</p>
+        </a>
+
+        <a href="../芝士蛋糕/recipe.html?recipe=banana-cake" class="cake-card">
+          <img src="../images/banana-bread.jpeg" alt="香蕉蛋糕" />
+          <h2>香蕉蛋糕</h2>
+          <p>Banana Bread</p>
+        </a>
+
+        <a
+          href="../芝士蛋糕/recipe.html?recipe=ube-cake-roll"
+          class="cake-card"
+        >
+          <img
+            src="../images/ube-cake-roll.jpeg"
+            alt="Ube蛋糕卷"
+            style="object-position: center 60%"
+          />
+          <h2>Ube蛋糕卷</h2>
+          <p>Ube Cake Roll</p>
+        </a>
       </section>
     </main>
     <script src="../scripts/site-search.js"></script>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <strong>Chlotreats</strong>
+          <p>记录日常烘焙，也收藏每一次出炉的快乐。</p>
+        </div>
+        <p class="copyright">&copy; 2026 Chlotreats. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
-  <footer>
-    <p style="text-align: center; padding: 20px; color: #999">
-      &copy; 2026 Chlotreats. All rights reserved.
-    </p>
-  </footer>
 </html>

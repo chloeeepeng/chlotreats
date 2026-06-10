@@ -1,0 +1,45 @@
+.site-footer {
+  padding: 34px clamp(24px, 5vw, 72px);
+  background: #5a4033;
+  color: #f7efe5;
+  border-top: 0;
+}
+
+.site-footer .footer-inner {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.site-footer strong {
+  font-family: Georgia, "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.site-footer p {
+  margin: 5px 0 0;
+  padding: 0;
+  color: rgba(247, 239, 229, 0.68);
+  font-size: 12px;
+  text-align: left;
+}
+
+.site-footer .copyright {
+  margin: 0;
+  text-align: right;
+}
+
+@media (max-width: 560px) {
+  .site-footer .footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-footer .copyright {
+    text-align: left;
+  }
+}
