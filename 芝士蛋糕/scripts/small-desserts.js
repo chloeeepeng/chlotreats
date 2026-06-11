@@ -5,7 +5,7 @@ Object.assign(recipes, {
     image: "../images/choux-pastry.jpeg",
     imagePosition: "center center",
     imageZoom: 1,
-    intro: "C&G cooking<br>我的操作顺序是：卡仕达酱、曲奇酥皮、泡芙壳、外交官奶油。泡芙能做 12-14 个。",
+    intro: "<a href='https://www.youtube.com/watch?v=TgyqXyFy0FE&list=PLrQepuxXEyspt9h-9ZxDE9hmffrYWdr11&index=44&t=64s&pp=iAQBsAgC target='_blank' style='color: #6b4f3d; text-decoration: underline;'>C&G cooking</a><br>我的操作顺序是：卡仕达酱、曲奇酥皮、泡芙壳、外交官奶油。<br>泡芙能做 12-14 个。",
     ingredients: [
       { type: "heading", text: "卡仕达酱" },
       { name: "泡芙卡仕达蛋黄", displayName: "蛋黄", amount: 3, unit: "pc" },
@@ -76,7 +76,7 @@ Object.assign(recipes, {
     image: "../images/apple-pie.jpeg",
     imagePosition: "center center",
     imageZoom: 1,
-    intro: "配方来自 emojoie",
+    intro: "配方来自 <a href='https://www.youtube.com/watch?v=4-bN7_fGwv4&list=PLrQepuxXEyspt9h-9ZxDE9hmffrYWdr11&index=42&t=444s&pp=iAQBsAgC' target='_blank' style='color: #6b4f3d; text-decoration: underline;'>emojoie</a>",
     ingredients: [
       { type: "heading", text: "派皮" },
       { name: "苹果派中粉", displayName: "中粉", amount: 160, unit: "g" },
@@ -122,7 +122,7 @@ Object.assign(recipes, {
     image: "../images/blueberry-muffins.jpeg",
     imagePosition: "center 70%",
     imageZoom: 1,
-    intro: "配方参考 Sally's Baking。玛芬模具，冰淇淋勺。可用 180g 酸牛奶。",
+    intro: "配方参考<a href='https://sallysbakingaddiction.com/blueberry-muffins/#tasty-recipes-67559'target='_blank' style='color: #6b4f3d; text-decoration: underline;'>Sally's Baking</a><br>玛芬模具，冰淇淋勺。可用 180g 酸牛奶。",
     ingredients: [
       { type: "heading", text: "杏仁酥粒" },
       { name: "蓝莓玛芬酥粒中筋面粉", displayName: "中筋面粉", amount: 25, unit: "g" },

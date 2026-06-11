@@ -111,6 +111,56 @@ Object.assign(recipes, {
     ]
   },
 
+  "rotiboy": {
+    title: "波兰种墨西哥面包（原味）",
+    name: "Rotiboy",
+    image: "../images/rotiboy.png",
+    imagePosition: "center center",
+    imageZoom: 1,
+    intro: "柔软的波兰种面包挤上香甜酥脆的墨西哥酱，烤至表面金黄。",
+    ingredients: [
+      { type: "heading", text: "波兰种" },
+      { name: "Rotiboy波兰种高筋面粉", displayName: "高筋面粉", amount: 50, unit: "g" },
+      { name: "Rotiboy波兰种水", displayName: "水", amount: 50, unit: "g" },
+      { name: "Rotiboy波兰种干酵母", displayName: "耐高糖干酵母", amount: 0.5, unit: "g" },
+
+      { type: "heading", text: "主面团" },
+      { name: "Rotiboy高筋面粉", displayName: "高筋面粉", amount: 200, unit: "g" },
+      { name: "Rotiboy牛奶", displayName: "牛奶", amount: 65, unit: "g" },
+      { name: "Rotiboy淡奶油", displayName: "淡奶油", amount: 20, unit: "g" },
+      { name: "Rotiboy奶粉", displayName: "奶粉", amount: 10, unit: "g" },
+      { name: "Rotiboy糖", displayName: "糖", amount: 30, unit: "g" },
+      { name: "Rotiboy干酵母", displayName: "耐高糖干酵母", amount: 2, unit: "g" },
+      { name: "Rotiboy盐", displayName: "盐", amount: 2, unit: "g" },
+      { name: "Rotiboy全蛋液", displayName: "全蛋液", amount: 25, unit: "g" },
+      { name: "Rotiboy黄油", displayName: "黄油", amount: 25, unit: "g" },
+
+      { type: "heading", text: "墨西哥酱" },
+      { name: "Rotiboy墨西哥酱黄油", displayName: "无盐黄油", amount: 40, unit: "g" },
+      { name: "Rotiboy墨西哥酱糖粉", displayName: "糖粉", amount: 40, unit: "g" },
+      { name: "Rotiboy墨西哥酱全蛋液", displayName: "全蛋液", amount: 40, unit: "g" },
+      { name: "Rotiboy墨西哥酱低筋面粉", displayName: "低筋面粉", amount: 40, unit: "g" }
+    ],
+    steps: [
+      "将所有波兰种材料混合均匀。",
+      "室温或冷藏发酵至表面有许多气泡，内部呈蜂窝状。",
+      "将波兰种与除 {Rotiboy黄油} 黄油外的所有主面团材料放入厨师机，2 档揉成团。",
+      "换 4 档揉至扩展阶段。",
+      "加入软化的 {Rotiboy黄油} 黄油，1 档揉至黄油被面团完全吸收。",
+      "换 4 档继续揉至能拉出手套膜。",
+      "面团放在温暖处发酵至两倍大。",
+      "发酵完成后平均分成 9 份，滚圆并松弛 15 分钟。",
+      "将面团轻轻压扁，拍掉边缘的大气泡，再次滚圆。",
+      "放入模具中，在温暖处发酵至两倍大。",
+      "烤箱预热至 180°C。",
+      "制作墨西哥酱：将软化的 {Rotiboy墨西哥酱黄油} 无盐黄油与 {Rotiboy墨西哥酱糖粉} 糖粉搅拌顺滑。",
+      "将 {Rotiboy墨西哥酱全蛋液} 全蛋液分三次加入，每次搅拌至完全吸收后再加下一次。",
+      "筛入 {Rotiboy墨西哥酱低筋面粉} 低筋面粉，拌匀后装入裱花袋。",
+      "裱花袋剪一个小口，将墨西哥酱从中心向外画圈挤在发酵好的面团上。",
+      "放入预热好的烤箱，以 180°C 烘烤约 16 分钟。"
+    ]
+  },
+
   "butter-rolls": {
     title: "黄油餐包",
     name: "Butter Dinner Rolls",
@@ -1363,7 +1413,7 @@ Object.assign(recipes, {
     image: "../images/salt-bread.jpeg",
     imagePosition: "center center",
     imageZoom: 1,
-    intro: "法国老面",
+    intro: "原方来自<a href='https://ciao.kitchen/salted-butter-roll/'target='_blank' style='color: #6b4f3d; text-decoration: underline;'>巧儿灶咖</a>",
     ingredients: [
       { type: "heading", text: "法国老面" },
       { name: "盐面包老面中筋面粉", displayName: "中筋面粉", amount: 100, unit: "g" },
@@ -1480,4 +1530,3 @@ Object.assign(recipes, {
     ]
   }
 });
-
