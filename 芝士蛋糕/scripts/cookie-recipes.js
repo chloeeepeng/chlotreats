@@ -172,7 +172,7 @@ Object.assign(recipes, {
 
   "coconut-cookies": {
     title: "椰香饼干",
-    name: "Coconut Cookies",
+    name: "Coconut Shortbread",
     image: "../images/coconut-cookies.jpeg",
     imagePosition: "center center",
     imageZoom: 1,
